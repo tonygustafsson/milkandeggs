@@ -3,25 +3,23 @@
 </script>
 
 <script>
-	import { currentItems } from '../stores/currentItems.js';
+	import { items } from '../stores/items.js';
 	import categories from '../data/categories.json';
 
 	$: getMatchingCategoryItems = (categoryId) => {
-		return Object.values($currentItems).filter((x) => x.categoryId == categoryId);
+		return Object.values($items).filter((x) => x.categoryId == categoryId && x.active);
 	};
 	$: categoryHasItems = (categoryId) =>
-		Object.values($currentItems).find((x) => x.categoryId == categoryId);
+		Object.values($items).find((x) => x.categoryId == categoryId && x.active);
 
 	const checkItem = (e) => {
-		const newItems = $currentItems;
-		newItems[e.target.name].done = e.target.checked;
-		currentItems.set(newItems);
+		$items[e.target.name].done = e.target.checked;
+		items.set($items);
 	};
 
 	const clear = () => {
-		const newItems = $currentItems;
-		Object.values(newItems).forEach((item) => (item.done = true));
-		currentItems.set(newItems);
+		Object.values($items).forEach((item) => (item.done = true));
+		items.set($items);
 	};
 </script>
 
@@ -48,7 +46,7 @@
 						name={item.name}
 						class="checkbox"
 						id={item.name}
-						checked={$currentItems.hasOwnProperty(item.name) && $currentItems[item.name].done}
+						checked={$items.hasOwnProperty(item.name) && $items[item.name].done}
 					/>
 					<label class:done={item.done} for={item.name}>{item.name}</label>
 				</p>
@@ -56,7 +54,7 @@
 		{/if}
 	{/each}
 
-	{#if Object.values($currentItems).length < 1}
+	{#if Object.values($items).filter((x) => !x.active).length < 1}
 		<p><em>Inköpslistan är tom.</em></p>
 	{/if}
 </section>

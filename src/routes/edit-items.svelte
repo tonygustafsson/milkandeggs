@@ -18,15 +18,16 @@
 	import categories from '../data/categories.json';
 	import { items } from '../stores/items.js';
 
-	$: getMatchingCategoryItems = (categoryId) => $items.filter((x) => x.category == categoryId);
-	$: categoryHasItems = (categoryId) => $items.find((x) => x.category == categoryId);
+	$: getMatchingCategoryItems = (categoryId) =>
+		Object.values($items).filter((x) => x.categoryId == categoryId);
+	$: categoryHasItems = (categoryId) =>
+		Object.values($items).find((x) => x.categoryId == categoryId);
 
 	const deleteItem = (item, e) => {
 		e.preventDefault();
 
-		let newItems = $items;
-		newItems = newItems.filter((x) => x.name !== item);
-		items.set(newItems);
+		delete $items[item];
+		items.set($items);
 	};
 </script>
 

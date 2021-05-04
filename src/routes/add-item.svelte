@@ -23,10 +23,13 @@
 	let category;
 
 	const addItem = () => {
-		$items.push({
+		$items[name.value] = {
 			name: name.value,
-			category: category.value
-		});
+			categoryId: category.value,
+			active: false,
+			quantity: 1
+		};
+
 		items.set($items);
 
 		goto('/edit-items');

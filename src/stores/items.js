@@ -4,9 +4,9 @@ let storedItems;
 
 if (typeof window !== 'undefined') {
 	storedItems = window.localStorage.getItem('items');
-	storedItems = JSON.parse(storedItems) || [];
+	storedItems = JSON.parse(storedItems) || {};
 } else {
-	storedItems = [];
+	storedItems = {};
 }
 
 export const items = writable(storedItems);

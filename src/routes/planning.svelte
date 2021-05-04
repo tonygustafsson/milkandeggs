@@ -17,38 +17,33 @@
 <script>
 	import categories from '../data/categories.json';
 	import { items } from '../stores/items.js';
-	import { currentItems } from '../stores/currentItems.js';
 
-	$: getMatchingCategoryItems = (categoryId) => $items.filter((x) => x.category == categoryId);
-	$: categoryHasItems = (categoryId) => $items.find((x) => x.category == categoryId);
+	$: getMatchingCategoryItems = (categoryId) =>
+		Object.values($items).filter((x) => x.categoryId == categoryId);
+	$: categoryHasItems = (categoryId) =>
+		Object.values($items).find((x) => x.categoryId == categoryId);
 
 	const addToCurrentList = (e) => {
 		const active = e.target.checked;
+		const id = e.target.id;
+		const item = Object.values($items).find((x) => x.name === id);
 
-		if (active) {
-			const item = {
-				name: e.target.id,
-				active: active,
-				done: false,
-				categoryId: parseInt(e.target.getAttribute('data-categoryId')),
-				quantity: 1
-			};
-
-			console.log(item);
-
-			const newItems = $currentItems;
-			newItems[e.target.id] = item;
-			currentItems.set(newItems);
-		} else {
-			const newItems = $currentItems;
-			delete newItems[e.target.id];
-			console.log('Remove ' + e.target.id);
-			currentItems.set(newItems);
-		}
+		item.active = active;
+		item.done = !active;
+		items.set($items);
 	};
 
 	const clear = () => {
-		currentItems.set({});
+		Object.values($items).forEach((x) => (x.active = false));
+		items.set($items);
+	};
+
+	const increaseQuantity = () => {
+		alert('increiase');
+	};
+
+	const decreaseQuantity = () => {
+		alert('decrease');
 	};
 </script>
 
@@ -75,9 +70,15 @@
 						name={item.name}
 						data-categoryId={categoryId}
 						id={item.name}
-						checked={$currentItems.hasOwnProperty(item.name) && $currentItems[item.name].active}
+						checked={$items.hasOwnProperty(item.name) && $items[item.name].active}
 					/>
-					<label for={item.name}>{item.name}</label>
+					<label for={item.name}>
+						{item.name}
+					</label>
+
+					<button data-item-id={item.name} on:click={increaseQuantity}>+</button>
+					<span>{item.quantity}</span>
+					<button data-item-id={item.name} on:click={decreaseQuantity}>-</button>
 				</p>
 			{/each}
 		{:else}
@@ -91,5 +92,8 @@
 		text-align: right;
 		width: 100%;
 		margin-bottom: 2em;
+	}
+	label {
+		user-select: none;
 	}
 </style>
