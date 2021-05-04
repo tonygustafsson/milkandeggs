@@ -3,14 +3,14 @@
 </script>
 
 <script>
-	import { items } from '../stores/items.js';
+	import { items, itemsArray } from '../stores/items.js';
 	import categories from '../data/categories.json';
 
 	$: getMatchingCategoryItems = (categoryId) => {
-		return Object.values($items).filter((x) => x.categoryId == categoryId && x.active);
+		return $itemsArray.filter((x) => x.categoryId == categoryId && x.active);
 	};
 	$: categoryHasItems = (categoryId) =>
-		Object.values($items).find((x) => x.categoryId == categoryId && x.active);
+		$itemsArray.find((x) => x.categoryId == categoryId && x.active);
 
 	const checkItem = (e) => {
 		$items[e.target.name].done = e.target.checked;
@@ -18,7 +18,7 @@
 	};
 
 	const clear = () => {
-		Object.values($items).forEach((item) => (item.done = true));
+		$itemsArray.forEach((item) => (item.done = true));
 		items.set($items);
 	};
 </script>
@@ -62,7 +62,7 @@
 		{/if}
 	{/each}
 
-	{#if Object.values($items).filter((x) => !x.active).length < 1}
+	{#if $itemsArray.filter((x) => !x.active).length < 1}
 		<p><em>Inköpslistan är tom.</em></p>
 	{/if}
 </section>

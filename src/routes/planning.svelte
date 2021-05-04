@@ -16,17 +16,16 @@
 
 <script>
 	import categories from '../data/categories.json';
-	import { items } from '../stores/items.js';
+	import { items, itemsArray } from '../stores/items.js';
 
 	$: getMatchingCategoryItems = (categoryId) =>
-		Object.values($items).filter((x) => x.categoryId == categoryId);
-	$: categoryHasItems = (categoryId) =>
-		Object.values($items).find((x) => x.categoryId == categoryId);
+		$itemsArray.filter((x) => x.categoryId == categoryId);
+	$: categoryHasItems = (categoryId) => $itemsArray.find((x) => x.categoryId == categoryId);
 
 	const addToCurrentList = (e) => {
 		const active = e.target.checked;
 		const id = e.target.id;
-		const item = Object.values($items).find((x) => x.name === id);
+		const item = $itemsArray.find((x) => x.name === id);
 
 		item.active = active;
 		item.done = !active;
@@ -35,13 +34,13 @@
 	};
 
 	const clear = () => {
-		Object.values($items).forEach((x) => ((x.active = false), (x.quantity = 1), (x.comment = '')));
+		$itemsArray.forEach((x) => ((x.active = false), (x.quantity = 1), (x.comment = '')));
 		items.set($items);
 	};
 
 	const increaseQuantity = (e) => {
 		const id = e.target.getAttribute('data-item-id');
-		const item = Object.values($items).find((x) => x.name === id);
+		const item = $itemsArray.find((x) => x.name === id);
 
 		item.quantity++;
 		items.set($items);
@@ -49,7 +48,7 @@
 
 	const decreaseQuantity = (e) => {
 		const id = e.target.getAttribute('data-item-id');
-		const item = Object.values($items).find((x) => x.name === id);
+		const item = $itemsArray.find((x) => x.name === id);
 
 		if (item.quantity < 2) {
 			return;
@@ -61,7 +60,7 @@
 
 	const comment = (e) => {
 		const id = e.target.getAttribute('data-item-id');
-		const item = Object.values($items).find((x) => x.name === id);
+		const item = $itemsArray.find((x) => x.name === id);
 
 		item.comment = e.target.value;
 		items.set($items);

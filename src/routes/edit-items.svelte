@@ -16,12 +16,11 @@
 
 <script>
 	import categories from '../data/categories.json';
-	import { items } from '../stores/items.js';
+	import { items, itemsArray } from '../stores/items.js';
 
 	$: getMatchingCategoryItems = (categoryId) =>
-		Object.values($items).filter((x) => x.categoryId == categoryId);
-	$: categoryHasItems = (categoryId) =>
-		Object.values($items).find((x) => x.categoryId == categoryId);
+		$itemsArray.filter((x) => x.categoryId == categoryId);
+	$: categoryHasItems = (categoryId) => $itemsArray.find((x) => x.categoryId == categoryId);
 
 	const deleteItem = (item, e) => {
 		e.preventDefault();

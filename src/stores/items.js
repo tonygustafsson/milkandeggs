@@ -1,12 +1,10 @@
-import { writable } from 'svelte/store';
+import { writable, derived } from 'svelte/store';
 
-let storedItems;
+let storedItems = {};
 
 if (typeof window !== 'undefined') {
-	storedItems = window.localStorage.getItem('items');
-	storedItems = JSON.parse(storedItems) || {};
-} else {
-	storedItems = {};
+	const storedItemsFromStorage = window.localStorage.getItem('items');
+	storedItems = storedItemsFromStorage ? JSON.parse(storedItemsFromStorage) : storedItems;
 }
 
 export const items = writable(storedItems);
@@ -16,3 +14,5 @@ items.subscribe((value) => {
 		window.localStorage.setItem('items', JSON.stringify(value));
 	}
 });
+
+export const itemsArray = derived(items, ($items) => Object.values($items));
