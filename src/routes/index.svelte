@@ -26,7 +26,7 @@
 </script>
 
 <svelte:head>
-	<title>Inköpslistan</title>
+	<title>Lista</title>
 </svelte:head>
 
 <section>
@@ -55,6 +55,10 @@
 			{/each}
 		{/if}
 	{/each}
+
+	{#if Object.values($currentItems).length < 1}
+		<p><em>Inköpslistan är tom.</em></p>
+	{/if}
 </section>
 
 <style>

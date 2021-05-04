@@ -29,7 +29,7 @@
 		});
 		items.set($items);
 
-		goto('/edit');
+		goto('/edit-items');
 	};
 </script>
 
