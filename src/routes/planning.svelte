@@ -35,7 +35,7 @@
 	};
 
 	const clear = () => {
-		Object.values($items).forEach((x) => (x.active = false));
+		Object.values($items).forEach((x) => ((x.active = false), (x.quantity = 1), (x.comment = '')));
 		items.set($items);
 	};
 
@@ -56,6 +56,14 @@
 		}
 
 		item.quantity--;
+		items.set($items);
+	};
+
+	const comment = (e) => {
+		const id = e.target.getAttribute('data-item-id');
+		const item = Object.values($items).find((x) => x.name === id);
+
+		item.comment = e.target.value;
 		items.set($items);
 	};
 </script>
@@ -89,9 +97,21 @@
 						{item.name}
 					</label>
 
-					<button data-item-id={item.name} on:click={increaseQuantity}>+</button>
+					<button disabled={!item.active} data-item-id={item.name} on:click={increaseQuantity}
+						>+</button
+					>
 					<span>{item.quantity}</span>
-					<button data-item-id={item.name} on:click={decreaseQuantity}>-</button>
+					<button disabled={!item.active} data-item-id={item.name} on:click={decreaseQuantity}
+						>-</button
+					>
+					<input
+						disabled={!item.active}
+						data-item-id={item.name}
+						value={item.comment || ''}
+						type="text"
+						placeholder="Kommentar"
+						on:change={comment}
+					/>
 				</p>
 			{/each}
 		{:else}

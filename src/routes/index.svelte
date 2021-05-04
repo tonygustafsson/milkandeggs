@@ -54,6 +54,9 @@
 							{item.quantity} st
 						{/if}
 					</label>
+					{#if item.comment}
+						<p class="comment">{item.comment}</p>
+					{/if}
 				</p>
 			{/each}
 		{/if}
@@ -78,5 +81,11 @@
 		text-align: right;
 		width: 100%;
 		margin-bottom: 2em;
+	}
+	.comment {
+		font-size: 10px;
+		color: #666;
+		text-indent: 2em;
+		user-select: none;
 	}
 </style>

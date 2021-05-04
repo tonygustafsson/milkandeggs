@@ -27,7 +27,8 @@
 			name: name.value,
 			categoryId: category.value,
 			active: false,
-			quantity: 1
+			quantity: 1,
+			comment: ''
 		};
 
 		items.set($items);
