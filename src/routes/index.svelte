@@ -17,6 +17,12 @@
 		newItems[e.target.name].done = e.target.checked;
 		currentItems.set(newItems);
 	};
+
+	const clear = () => {
+		const newItems = $currentItems;
+		Object.values(newItems).forEach((item) => (item.done = true));
+		currentItems.set(newItems);
+	};
 </script>
 
 <svelte:head>
@@ -25,6 +31,10 @@
 
 <section>
 	<h1>Inköpslistan</h1>
+
+	<div class="button-panel">
+		<a href="" on:click={clear}>Allt klart</a>
+	</div>
 
 	{#each categories as category, categoryId}
 		{#if categoryHasItems(categoryId)}
@@ -40,7 +50,7 @@
 						id={item.name}
 						checked={$currentItems.hasOwnProperty(item.name) && $currentItems[item.name].done}
 					/>
-					<label class:done={!item.done} for={item.name}>{item.name}</label>
+					<label class:done={item.done} for={item.name}>{item.name}</label>
 				</p>
 			{/each}
 		{/if}
@@ -56,5 +66,10 @@
 	}
 	label {
 		user-select: none;
+	}
+	.button-panel {
+		text-align: right;
+		width: 100%;
+		margin-bottom: 2em;
 	}
 </style>

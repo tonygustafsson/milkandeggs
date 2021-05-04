@@ -23,17 +23,32 @@
 	$: categoryHasItems = (categoryId) => $items.find((x) => x.category == categoryId);
 
 	const addToCurrentList = (e) => {
-		const item = {
-			name: e.target.id,
-			active: e.target.checked,
-			done: false,
-			categoryId: parseInt(e.target.getAttribute('data-categoryId')),
-			quantity: 1
-		};
+		const active = e.target.checked;
 
-		const newItems = $currentItems;
-		newItems[e.target.id] = item;
-		currentItems.set(newItems);
+		if (active) {
+			const item = {
+				name: e.target.id,
+				active: active,
+				done: false,
+				categoryId: parseInt(e.target.getAttribute('data-categoryId')),
+				quantity: 1
+			};
+
+			console.log(item);
+
+			const newItems = $currentItems;
+			newItems[e.target.id] = item;
+			currentItems.set(newItems);
+		} else {
+			const newItems = $currentItems;
+			delete newItems[e.target.id];
+			console.log('Remove ' + e.target.id);
+			currentItems.set(newItems);
+		}
+	};
+
+	const clear = () => {
+		currentItems.set({});
 	};
 </script>
 
@@ -46,6 +61,7 @@
 
 	<div class="button-panel">
 		<a href="/add-item">Lägg till vara</a>
+		<a href="" on:click={clear}>Töm listan</a>
 	</div>
 
 	{#each categories as category, categoryId}
