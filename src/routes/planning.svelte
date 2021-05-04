@@ -30,6 +30,7 @@
 
 		item.active = active;
 		item.done = !active;
+		item.quantity = 1;
 		items.set($items);
 	};
 
@@ -38,12 +39,24 @@
 		items.set($items);
 	};
 
-	const increaseQuantity = () => {
-		alert('increiase');
+	const increaseQuantity = (e) => {
+		const id = e.target.getAttribute('data-item-id');
+		const item = Object.values($items).find((x) => x.name === id);
+
+		item.quantity++;
+		items.set($items);
 	};
 
-	const decreaseQuantity = () => {
-		alert('decrease');
+	const decreaseQuantity = (e) => {
+		const id = e.target.getAttribute('data-item-id');
+		const item = Object.values($items).find((x) => x.name === id);
+
+		if (item.quantity < 2) {
+			return;
+		}
+
+		item.quantity--;
+		items.set($items);
 	};
 </script>
 

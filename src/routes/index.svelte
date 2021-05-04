@@ -48,7 +48,12 @@
 						id={item.name}
 						checked={$items.hasOwnProperty(item.name) && $items[item.name].done}
 					/>
-					<label class:done={item.done} for={item.name}>{item.name}</label>
+					<label class:done={item.done} for={item.name}>
+						{item.name}
+						{#if item.quantity > 1}
+							{item.quantity} st
+						{/if}
+					</label>
 				</p>
 			{/each}
 		{/if}
