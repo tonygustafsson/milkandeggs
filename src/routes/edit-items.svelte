@@ -48,7 +48,7 @@
 			{#each getMatchingCategoryItems(categoryId) as item}
 				<p>
 					{item.name}
-					<a href="#" on:click={(e) => deleteItem(item.name, e)}>Ta bort</a>
+					<button on:click={(e) => deleteItem(item.name, e)}>Ta bort</button>
 				</p>
 			{/each}
 		{:else}

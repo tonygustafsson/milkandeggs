@@ -31,7 +31,7 @@
 	<h1>Inköpslistan</h1>
 
 	<div class="button-panel">
-		<a href="" on:click={clear}>Allt klart</a>
+		<button on:click={clear}>Allt klart</button>
 	</div>
 
 	{#each categories as category, categoryId}
@@ -46,7 +46,8 @@
 						name={item.name}
 						class="checkbox"
 						id={item.name}
-						checked={$items.hasOwnProperty(item.name) && $items[item.name].done}
+						checked={Object.prototype.hasOwnProperty.call($items, item.name) &&
+							$items[item.name].done}
 					/>
 					<label class:done={item.done} for={item.name}>
 						{item.name}

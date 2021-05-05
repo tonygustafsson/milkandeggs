@@ -75,7 +75,7 @@
 	<h1>Planera</h1>
 
 	<div class="button-panel">
-		<a href="" on:click={clear}>Töm listan</a>
+		<button on:click={clear}>Töm listan</button>
 	</div>
 
 	{#each categories as category, categoryId}
@@ -90,7 +90,8 @@
 						name={item.name}
 						data-categoryId={categoryId}
 						id={item.name}
-						checked={$items.hasOwnProperty(item.name) && $items[item.name].active}
+						checked={Object.prototype.hasOwnProperty.call($items, item.name) &&
+							$items[item.name].active}
 					/>
 					<label for={item.name}>
 						{item.name}
