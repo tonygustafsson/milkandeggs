@@ -16,7 +16,7 @@
 
 <script>
 	import categories from '../data/categories.json';
-	import { items } from '../stores/items.js';
+	import { items } from '../stores/items';
 	import { goto } from '$app/navigation';
 
 	let name;
@@ -27,6 +27,7 @@
 			name: name.value,
 			categoryId: category.value,
 			active: false,
+			done: false,
 			quantity: 1,
 			comment: ''
 		};

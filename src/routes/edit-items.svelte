@@ -14,18 +14,18 @@
 	export const prerender = true;
 </script>
 
-<script>
+<script lang="typescript">
 	import categories from '../data/categories.json';
-	import { items, itemsArray } from '../stores/items.js';
+	import { items, itemsArray } from '../stores/items';
 
-	$: getMatchingCategoryItems = (categoryId) =>
+	$: getMatchingCategoryItems = (categoryId: number) =>
 		$itemsArray.filter((x) => x.categoryId == categoryId);
-	$: categoryHasItems = (categoryId) => $itemsArray.find((x) => x.categoryId == categoryId);
+	$: categoryHasItems = (categoryId: number) => $itemsArray.find((x) => x.categoryId == categoryId);
 
-	const deleteItem = (item, e) => {
+	const deleteItem = (itemName: string, e: MouseEvent) => {
 		e.preventDefault();
 
-		delete $items[item];
+		delete $items[itemName];
 		items.set($items);
 	};
 </script>

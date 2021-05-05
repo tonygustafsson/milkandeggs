@@ -14,15 +14,15 @@
 	export const prerender = true;
 </script>
 
-<script>
+<script lang="typescript">
 	import categories from '../data/categories.json';
-	import { items, itemsArray } from '../stores/items.js';
+	import { items, itemsArray } from '../stores/items';
 
-	$: getMatchingCategoryItems = (categoryId) =>
+	$: getMatchingCategoryItems = (categoryId: number) =>
 		$itemsArray.filter((x) => x.categoryId == categoryId);
-	$: categoryHasItems = (categoryId) => $itemsArray.find((x) => x.categoryId == categoryId);
+	$: categoryHasItems = (categoryId: number) => $itemsArray.find((x) => x.categoryId == categoryId);
 
-	const addToCurrentList = (e) => {
+	const addToCurrentList = (e: any) => {
 		const active = e.target.checked;
 		const id = e.target.id;
 		const item = $itemsArray.find((x) => x.name === id);

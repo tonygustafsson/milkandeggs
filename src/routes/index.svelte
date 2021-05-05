@@ -2,14 +2,14 @@
 	export const prerender = true;
 </script>
 
-<script>
-	import { items, itemsArray } from '../stores/items.js';
+<script lang="typescript">
+	import { items, itemsArray } from '../stores/items';
 	import categories from '../data/categories.json';
 
-	$: getMatchingCategoryItems = (categoryId) => {
+	$: getMatchingCategoryItems = (categoryId: number) => {
 		return $itemsArray.filter((x) => x.categoryId == categoryId && x.active);
 	};
-	$: categoryHasItems = (categoryId) =>
+	$: categoryHasItems = (categoryId: number) =>
 		$itemsArray.find((x) => x.categoryId == categoryId && x.active);
 
 	const checkItem = (e) => {
