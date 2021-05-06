@@ -22,10 +22,10 @@
 		$itemsArray.filter((x) => x.categoryId == categoryId);
 	$: categoryHasItems = (categoryId: string) => $itemsArray.find((x) => x.categoryId == categoryId);
 
-	const addToCurrentList = (e: any) => {
+	const toggleActivation = (e: any) => {
 		const active = e.target.checked;
 		const id = e.target.id;
-		const item = $itemsArray.find((x) => x.name === id);
+		const item = $itemsArray.find((x) => x.id === id);
 
 		item.active = active;
 		item.done = !active;
@@ -85,15 +85,15 @@
 			{#each getMatchingCategoryItems(category.id) as item}
 				<p>
 					<input
-						on:change={addToCurrentList}
+						on:change={toggleActivation}
 						type="checkbox"
 						name={item.name}
 						data-categoryId={category.id}
-						id={item.name}
-						checked={Object.prototype.hasOwnProperty.call($items, item.name) &&
-							$items[item.name].active}
+						id={item.id}
+						checked={Object.prototype.hasOwnProperty.call($items, item.id) &&
+							$items[item.id].active}
 					/>
-					<label for={item.name}>
+					<label for={item.id}>
 						{item.name}
 					</label>
 

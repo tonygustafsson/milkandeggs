@@ -13,7 +13,7 @@
 		$itemsArray.find((x) => x.categoryId == categoryId && x.active);
 
 	const checkItem = (e) => {
-		$items[e.target.name].done = e.target.checked;
+		$items[e.target.id].done = e.target.checked;
 		items.set($items);
 	};
 
@@ -45,11 +45,10 @@
 						type="checkbox"
 						name={item.name}
 						class="checkbox"
-						id={item.name}
-						checked={Object.prototype.hasOwnProperty.call($items, item.name) &&
-							$items[item.name].done}
+						id={item.id}
+						checked={Object.prototype.hasOwnProperty.call($items, item.id) && $items[item.id].done}
 					/>
-					<label class:done={item.done} for={item.name}>
+					<label class:done={item.done} for={item.id}>
 						{item.name}
 						{#if item.quantity > 1}
 							{item.quantity} st

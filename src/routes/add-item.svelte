@@ -14,7 +14,7 @@
 	export const prerender = true;
 </script>
 
-<script>
+<script lang="typescript">
 	import { categoriesArray } from '../stores/categories';
 	import { items } from '../stores/items';
 	import { goto } from '$app/navigation';
@@ -22,8 +22,25 @@
 	let name;
 	let category;
 
+	const createItemIdFromName = (name: string) => {
+		let id = name.replace(/\ /g, '-');
+		id = id.replace(/å/g, 'a');
+		id = id.replace(/Å/g, 'a');
+		id = id.replace(/ä/g, 'a');
+		id = id.replace(/ä/g, 'a');
+		id = id.replace(/ö/g, 'o');
+		id = id.replace(/Ö/g, 'o');
+		id = id.toLowerCase();
+		id = id.replace(/[^0-9a-z-]/gi, '');
+
+		return id;
+	};
+
 	const addItem = () => {
-		$items[name.value] = {
+		const newItemId = createItemIdFromName(name.value);
+
+		$items[newItemId] = {
+			id: newItemId,
 			name: name.value,
 			categoryId: category.value,
 			active: false,

@@ -1,6 +1,7 @@
 import { writable, derived, Writable, Readable } from 'svelte/store';
 
 export type Item = {
+	id: string;
 	name: string;
 	categoryId: string;
 	active: boolean;
