@@ -15,7 +15,7 @@
 </script>
 
 <script>
-	import categories from '../data/categories.json';
+	import { categoriesArray } from '../stores/categories';
 	import { items } from '../stores/items';
 	import { goto } from '$app/navigation';
 
@@ -49,12 +49,12 @@
 		<input type="text" name="name" bind:this={name} />
 
 		<select bind:this={category}>
-			{#each categories as category, key}
-				<option value={key}>{category}</option>
+			{#each $categoriesArray as category}
+				<option value={category.id}>{category.name}</option>
 			{/each}
 		</select>
 
-		<button type="button" on:click={() => addItem()}>Spara</button>
+		<button type="button" on:click={addItem}>Spara</button>
 	</form>
 </div>
 

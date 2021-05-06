@@ -4,12 +4,12 @@
 
 <script lang="typescript">
 	import { items, itemsArray } from '../stores/items';
-	import categories from '../data/categories.json';
+	import { categoriesArray } from '../stores/categories';
 
-	$: getMatchingCategoryItems = (categoryId: number) => {
+	$: getMatchingCategoryItems = (categoryId: string) => {
 		return $itemsArray.filter((x) => x.categoryId == categoryId && x.active);
 	};
-	$: categoryHasItems = (categoryId: number) =>
+	$: categoryHasItems = (categoryId: string) =>
 		$itemsArray.find((x) => x.categoryId == categoryId && x.active);
 
 	const checkItem = (e) => {
@@ -34,11 +34,11 @@
 		<button on:click={clear}>Allt klart</button>
 	</div>
 
-	{#each categories as category, categoryId}
-		{#if categoryHasItems(categoryId)}
-			<h3>{category}</h3>
+	{#each $categoriesArray as category}
+		{#if categoryHasItems(category.id)}
+			<h3>{category.name}</h3>
 
-			{#each getMatchingCategoryItems(categoryId) as item}
+			{#each getMatchingCategoryItems(category.id) as item}
 				<p>
 					<input
 						on:change={checkItem}

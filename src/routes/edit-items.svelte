@@ -15,12 +15,12 @@
 </script>
 
 <script lang="typescript">
-	import categories from '../data/categories.json';
+	import { categoriesArray } from '../stores/categories';
 	import { items, itemsArray } from '../stores/items';
 
-	$: getMatchingCategoryItems = (categoryId: number) =>
+	$: getMatchingCategoryItems = (categoryId: string) =>
 		$itemsArray.filter((x) => x.categoryId == categoryId);
-	$: categoryHasItems = (categoryId: number) => $itemsArray.find((x) => x.categoryId == categoryId);
+	$: categoryHasItems = (categoryId: string) => $itemsArray.find((x) => x.categoryId == categoryId);
 
 	const deleteItem = (itemName: string, e: MouseEvent) => {
 		e.preventDefault();
@@ -41,11 +41,11 @@
 		<a href="/add-item">Lägg till vara</a>
 	</div>
 
-	{#each categories as category, categoryId}
-		<h3>{category}</h3>
+	{#each $categoriesArray as category}
+		<h3>{category.name}</h3>
 
-		{#if categoryHasItems(categoryId)}
-			{#each getMatchingCategoryItems(categoryId) as item}
+		{#if categoryHasItems(category.id)}
+			{#each getMatchingCategoryItems(category.id) as item}
 				<p>
 					{item.name}
 					<button on:click={(e) => deleteItem(item.name, e)}>Ta bort</button>

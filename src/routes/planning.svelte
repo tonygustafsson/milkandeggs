@@ -15,12 +15,12 @@
 </script>
 
 <script lang="typescript">
-	import categories from '../data/categories.json';
+	import { categoriesArray } from '../stores/categories';
 	import { items, itemsArray } from '../stores/items';
 
-	$: getMatchingCategoryItems = (categoryId: number) =>
+	$: getMatchingCategoryItems = (categoryId: string) =>
 		$itemsArray.filter((x) => x.categoryId == categoryId);
-	$: categoryHasItems = (categoryId: number) => $itemsArray.find((x) => x.categoryId == categoryId);
+	$: categoryHasItems = (categoryId: string) => $itemsArray.find((x) => x.categoryId == categoryId);
 
 	const addToCurrentList = (e: any) => {
 		const active = e.target.checked;
@@ -78,17 +78,17 @@
 		<button on:click={clear}>Töm listan</button>
 	</div>
 
-	{#each categories as category, categoryId}
-		<h3>{category}</h3>
+	{#each $categoriesArray as category}
+		<h3>{category.name}</h3>
 
-		{#if categoryHasItems(categoryId)}
-			{#each getMatchingCategoryItems(categoryId) as item}
+		{#if categoryHasItems(category.id)}
+			{#each getMatchingCategoryItems(category.id) as item}
 				<p>
 					<input
 						on:change={addToCurrentList}
 						type="checkbox"
 						name={item.name}
-						data-categoryId={categoryId}
+						data-categoryId={category.id}
 						id={item.name}
 						checked={Object.prototype.hasOwnProperty.call($items, item.name) &&
 							$items[item.name].active}

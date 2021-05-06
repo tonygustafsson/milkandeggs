@@ -1,1 +1,34 @@
-["Frukt & Grönt", "Mejeri", "Torrvaror", "Städ & Hygien", "Chark", "Godis", "Dricka", "Övrigt"]
+{
+	"frukt-gront": {
+		"id": "frukt-gront",
+		"name": "Frukt & Grönt"
+	},
+	"mejeri": {
+		"id": "mejeri",
+		"name": "Mejeri"
+	},
+	"torrvaror": {
+		"id": "torrvaror",
+		"name": "Torrvaror"
+	},
+	"stad-hygien": {
+		"id": "stad-hygien",
+		"name": "Städ & Hygien"
+	},
+	"chark": {
+		"id": "chark",
+		"name": "Chark"
+	},
+	"godis": {
+		"id": "godis",
+		"name": "Godis"
+	},
+	"dricka": {
+		"id": "dricka",
+		"name": "Dricka"
+	},
+	"ovrigt": {
+		"id": "ovrigt",
+		"name": "Övrigt"
+	}
+}

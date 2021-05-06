@@ -2,7 +2,7 @@ import { writable, derived, Writable, Readable } from 'svelte/store';
 
 export type Item = {
 	name: string;
-	categoryId: number;
+	categoryId: string;
 	active: boolean;
 	done: boolean;
 	quantity: number;
