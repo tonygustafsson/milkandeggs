@@ -30,6 +30,11 @@
 		item.active = active;
 		item.done = !active;
 		item.quantity = 1;
+
+		if (!active) {
+			item.comment = '';
+		}
+
 		items.set($items);
 	};
 
