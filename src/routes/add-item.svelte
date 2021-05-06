@@ -60,7 +60,7 @@
 </svelte:head>
 
 <div class="content">
-	<h1>Lägg till vara</h1>
+	<h2>Lägg till vara</h2>
 
 	<form>
 		<input type="text" name="name" bind:this={name} />

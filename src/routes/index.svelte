@@ -28,8 +28,6 @@
 </svelte:head>
 
 <section>
-	<h1>Inköpslistan</h1>
-
 	<div class="button-panel">
 		<button on:click={clear}>Allt klart</button>
 	</div>

@@ -77,8 +77,6 @@
 </svelte:head>
 
 <div class="content">
-	<h1>Planera</h1>
-
 	<div class="button-panel">
 		<button on:click={clear}>Töm listan</button>
 	</div>

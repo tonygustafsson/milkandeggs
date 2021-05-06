@@ -35,8 +35,6 @@
 </svelte:head>
 
 <div class="content">
-	<h1>Varor</h1>
-
 	<div class="button-panel">
 		<a href="/add-item">Lägg till vara</a>
 	</div>
