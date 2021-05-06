@@ -17,6 +17,7 @@
 <script lang="typescript">
 	import { categoriesArray } from '../stores/categories';
 	import { items, itemsArray } from '../stores/items';
+	import Button from '$lib/button.svelte';
 
 	$: getMatchingCategoryItems = (categoryId: string) =>
 		$itemsArray.filter((x) => x.categoryId == categoryId);
@@ -78,7 +79,7 @@
 
 <div class="content">
 	<div class="button-panel">
-		<button on:click={clear}>Töm listan</button>
+		<Button on:click={clear}>Töm listan</Button>
 	</div>
 
 	{#each $categoriesArray as category}
@@ -100,12 +101,18 @@
 						{item.name}
 					</label>
 
-					<button disabled={!item.active} data-item-id={item.name} on:click={increaseQuantity}
-						>+</button
+					<Button
+						size="small"
+						disabled={!item.active}
+						data-item-id={item.name}
+						on:click={increaseQuantity}>+</Button
 					>
 					<span>{item.quantity}</span>
-					<button disabled={!item.active} data-item-id={item.name} on:click={decreaseQuantity}
-						>-</button
+					<Button
+						size="small"
+						disabled={!item.active}
+						data-item-id={item.name}
+						on:click={decreaseQuantity}>-</Button
 					>
 					<input
 						disabled={!item.active}
