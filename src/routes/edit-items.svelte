@@ -20,6 +20,8 @@
 	import Dialog from '$lib/dialog.svelte';
 	import Button from '$lib/button.svelte';
 	import AddItem from '$lib/edit-items/add-item.svelte';
+	import IconPlus from '$lib/icons/plus.svelte';
+	import IconRemove from '$lib/icons/remove.svelte';
 
 	$: getMatchingCategoryItems = (categoryId: string) =>
 		$itemsArray.filter((x) => x.categoryId == categoryId);
@@ -40,7 +42,10 @@
 
 <div class="content">
 	<div class="button-panel">
-		<Button on:click={() => (addItemDialogOpen = !addItemDialogOpen)}>Lägg till vara</Button>
+		<Button on:click={() => (addItemDialogOpen = !addItemDialogOpen)}>
+			<IconPlus />
+			Lägg till vara
+		</Button>
 
 		{#if addItemDialogOpen}
 			<Dialog
@@ -60,7 +65,10 @@
 			{#each getMatchingCategoryItems(category.id) as item}
 				<p>
 					{item.name}
-					<Button on:click={(e) => deleteItem(item.id, e)}>Ta bort</Button>
+
+					<Button size="small" border={false} on:click={(e) => deleteItem(item.id, e)}>
+						<IconRemove />
+					</Button>
 				</p>
 			{/each}
 		{:else}
