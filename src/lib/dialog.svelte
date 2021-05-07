@@ -43,6 +43,7 @@
 		box-shadow: 0 0 40px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 0, 0, 0.25);
 		max-width: 90vw;
 		box-sizing: border-box;
+		text-align: left;
 	}
 
 	dialog[open] {

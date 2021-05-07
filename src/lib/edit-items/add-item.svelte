@@ -1,26 +1,11 @@
-<script context="module">
-	import { browser, dev } from '$app/env';
-
-	// we don't need any JS on this page, though we'll load
-	// it in dev so that we get hot module replacement...
-	export const hydrate = dev;
-
-	// ...but if the client-side router is already loaded
-	// (i.e. we came here from elsewhere in the app), use it
-	export const router = browser;
-
-	// since there's no dynamic data here, we can prerender
-	// it so that it gets served as a static asset in prod
-	export const prerender = true;
-</script>
-
 <script lang="typescript">
-	import { categoriesArray } from '../stores/categories';
-	import { items } from '../stores/items';
-	import { goto } from '$app/navigation';
+	import { categoriesArray } from '../../stores/categories';
+	import { items } from '../../stores/items';
 	import Textfield from '$lib/textfield.svelte';
 	import Button from '$lib/button.svelte';
 	import Dropdown from '$lib/dropdown.svelte';
+
+	export let onClose: VoidFunction;
 
 	const createItemIdFromName = (name: string) => {
 		let id = name.replace(/\ /g, '-');
@@ -42,6 +27,10 @@
 		const form = e.target;
 		const newItemId = createItemIdFromName(form.name.value);
 
+		if (!newItemId) {
+			return;
+		}
+
 		$items[newItemId] = {
 			id: newItemId,
 			name: form.name.value,
@@ -54,17 +43,11 @@
 
 		items.set($items);
 
-		goto('/edit-items');
+		onClose();
 	};
 </script>
 
-<svelte:head>
-	<title>Lägg till vara</title>
-</svelte:head>
-
-<div class="content">
-	<h2>Lägg till vara</h2>
-
+<div>
 	<form on:submit={addItem}>
 		<Textfield type="text" name="name" />
 

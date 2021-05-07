@@ -17,15 +17,19 @@
 <script lang="typescript">
 	import { categoriesArray } from '../stores/categories';
 	import { items, itemsArray } from '../stores/items';
+	import Dialog from '$lib/dialog.svelte';
+	import Button from '$lib/button.svelte';
+	import AddItem from '$lib/edit-items/add-item.svelte';
 
 	$: getMatchingCategoryItems = (categoryId: string) =>
 		$itemsArray.filter((x) => x.categoryId == categoryId);
 	$: categoryHasItems = (categoryId: string) => $itemsArray.find((x) => x.categoryId == categoryId);
+	$: addItemDialogOpen = false;
 
-	const deleteItem = (itemName: string, e: MouseEvent) => {
+	const deleteItem = (itemId: string, e: MouseEvent) => {
 		e.preventDefault();
 
-		delete $items[itemName];
+		delete $items[itemId];
 		items.set($items);
 	};
 </script>
@@ -36,7 +40,17 @@
 
 <div class="content">
 	<div class="button-panel">
-		<a href="/add-item">Lägg till vara</a>
+		<Button on:click={() => (addItemDialogOpen = !addItemDialogOpen)}>Lägg till vara</Button>
+
+		{#if addItemDialogOpen}
+			<Dialog
+				open={addItemDialogOpen}
+				onClose={() => (addItemDialogOpen = false)}
+				title={`Lägg till vara`}
+			>
+				<AddItem onClose={() => (addItemDialogOpen = false)} />
+			</Dialog>
+		{/if}
 	</div>
 
 	{#each $categoriesArray as category}
@@ -46,7 +60,7 @@
 			{#each getMatchingCategoryItems(category.id) as item}
 				<p>
 					{item.name}
-					<button on:click={(e) => deleteItem(item.name, e)}>Ta bort</button>
+					<Button on:click={(e) => deleteItem(item.id, e)}>Ta bort</Button>
 				</p>
 			{/each}
 		{:else}
