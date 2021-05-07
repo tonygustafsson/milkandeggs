@@ -6,7 +6,7 @@
 	export let name: string;
 </script>
 
-<input {id} {type} {name} {placeholder} {value} {...$$restProps} />
+<input {id} {type} {name} {placeholder} {value} on:change {...$$restProps} />
 
 <style>
 	input {
