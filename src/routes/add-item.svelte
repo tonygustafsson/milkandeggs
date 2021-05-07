@@ -18,6 +18,8 @@
 	import { categoriesArray } from '../stores/categories';
 	import { items } from '../stores/items';
 	import { goto } from '$app/navigation';
+	import Textfield from '$lib/textfield.svelte';
+	import Button from '$lib/button.svelte';
 
 	let name;
 	let category;
@@ -63,7 +65,7 @@
 	<h2>Lägg till vara</h2>
 
 	<form>
-		<input type="text" name="name" bind:this={name} />
+		<Textfield type="text" name="name" bind:this={name} />
 
 		<select bind:this={category}>
 			{#each $categoriesArray as category}
@@ -71,7 +73,7 @@
 			{/each}
 		</select>
 
-		<button type="button" on:click={addItem}>Spara</button>
+		<Button type="button" on:click={addItem}>Spara</Button>
 	</form>
 </div>
 

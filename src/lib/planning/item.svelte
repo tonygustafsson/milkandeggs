@@ -2,6 +2,7 @@
 	import Button from '$lib/button.svelte';
 	import { items, itemsArray } from '../../stores/items';
 	import type Item from '../../types/item';
+	import Textfield from '$lib/textfield.svelte';
 
 	export let item: Item;
 
@@ -69,7 +70,7 @@
 	<Button size="small" disabled={!item.active} data-item-id={item.name} on:click={decreaseQuantity}
 		>-</Button
 	>
-	<input
+	<Textfield
 		disabled={!item.active}
 		data-item-id={item.name}
 		value={item.comment || ''}
