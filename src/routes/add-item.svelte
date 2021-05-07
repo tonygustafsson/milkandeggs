@@ -20,9 +20,7 @@
 	import { goto } from '$app/navigation';
 	import Textfield from '$lib/textfield.svelte';
 	import Button from '$lib/button.svelte';
-
-	let name;
-	let category;
+	import Dropdown from '$lib/dropdown.svelte';
 
 	const createItemIdFromName = (name: string) => {
 		let id = name.replace(/\ /g, '-');
@@ -38,13 +36,16 @@
 		return id;
 	};
 
-	const addItem = () => {
-		const newItemId = createItemIdFromName(name.value);
+	const addItem = (e) => {
+		e.preventDefault();
+
+		const form = e.target;
+		const newItemId = createItemIdFromName(form.name.value);
 
 		$items[newItemId] = {
 			id: newItemId,
-			name: name.value,
-			categoryId: category.value,
+			name: form.name.value,
+			categoryId: form.category.value,
 			active: false,
 			done: false,
 			quantity: 1,
@@ -64,16 +65,16 @@
 <div class="content">
 	<h2>Lägg till vara</h2>
 
-	<form>
-		<Textfield type="text" name="name" bind:this={name} />
+	<form on:submit={addItem}>
+		<Textfield type="text" name="name" />
 
-		<select bind:this={category}>
+		<Dropdown name="category">
 			{#each $categoriesArray as category}
 				<option value={category.id}>{category.name}</option>
 			{/each}
-		</select>
+		</Dropdown>
 
-		<Button type="button" on:click={addItem}>Spara</Button>
+		<Button type="submit">Spara</Button>
 	</form>
 </div>
 

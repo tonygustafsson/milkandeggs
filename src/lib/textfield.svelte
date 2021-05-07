@@ -12,6 +12,7 @@
 	input {
 		padding: 0.25em 0.5em;
 		background-color: #fff;
+		font-size: 1rem;
 		border: 1px #999 solid;
 	}
 </style>

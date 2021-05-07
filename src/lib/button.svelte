@@ -11,7 +11,8 @@
 	.button {
 		background-color: #fff;
 		border: 1px #999 solid;
-		padding: 0.2em 0.5em;
+		font-size: 1rem;
+		padding: 0.25em 0.5em;
 	}
 
 	.small {
