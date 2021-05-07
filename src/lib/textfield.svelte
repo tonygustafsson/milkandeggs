@@ -15,4 +15,9 @@
 		font-size: 1rem;
 		border: 1px #999 solid;
 	}
+
+	input[disabled] {
+		background-color: #eee;
+		cursor: not-allowed;
+	}
 </style>
