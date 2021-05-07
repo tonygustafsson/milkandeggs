@@ -3,6 +3,7 @@
 	import { items, itemsArray } from '../../stores/items';
 	import type Item from '../../types/item';
 	import Textfield from '$lib/textfield.svelte';
+	import Checkbox from '$lib/checkbox.svelte';
 
 	export let item: Item;
 
@@ -52,9 +53,8 @@
 </script>
 
 <div>
-	<input
+	<Checkbox
 		on:change={toggleActivation}
-		type="checkbox"
 		name={item.name}
 		id={item.id}
 		checked={Object.prototype.hasOwnProperty.call($items, item.id) && $items[item.id].active}

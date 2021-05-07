@@ -5,6 +5,7 @@
 <script lang="typescript">
 	import { items, itemsArray } from '../stores/items';
 	import { categoriesArray } from '../stores/categories';
+	import Checkbox from '$lib/checkbox.svelte';
 
 	$: getMatchingCategoryItems = (categoryId: string) => {
 		return $itemsArray.filter((x) => x.categoryId == categoryId && x.active);
@@ -38,12 +39,11 @@
 
 			{#each getMatchingCategoryItems(category.id) as item}
 				<p>
-					<input
+					<Checkbox
 						on:change={checkItem}
-						type="checkbox"
 						name={item.name}
-						class="checkbox"
 						id={item.id}
+						hidden
 						checked={Object.prototype.hasOwnProperty.call($items, item.id) && $items[item.id].done}
 					/>
 					<label class:done={item.done} for={item.id}>
@@ -68,9 +68,6 @@
 <style>
 	.done {
 		text-decoration: line-through;
-	}
-	.checkbox {
-		display: none;
 	}
 	label {
 		user-select: none;

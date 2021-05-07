@@ -1,11 +1,12 @@
 <script lang="typescript">
+	export let id: string;
 	export let value: string = '';
 	export let placeholder: string = '';
 	export let type: string = 'text';
 	export let name: string;
 </script>
 
-<input {type} {name} {placeholder} {value} {...$$restProps} />
+<input {id} {type} {name} {placeholder} {value} {...$$restProps} />
 
 <style>
 	input {
