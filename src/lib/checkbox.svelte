@@ -3,7 +3,7 @@
 	export let name: string = '';
 	export let value: string = '';
 	export let checked: boolean;
-	export let hidden: boolean;
+	export let hidden: boolean = false;
 </script>
 
 <input type="checkbox" {id} {name} {checked} {value} class:hidden on:change {...$$restProps} />

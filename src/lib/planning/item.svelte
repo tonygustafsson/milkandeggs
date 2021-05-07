@@ -5,6 +5,9 @@
 	import Textfield from '$lib/textfield.svelte';
 	import Checkbox from '$lib/checkbox.svelte';
 	import Dialog from '$lib/dialog.svelte';
+	import IconPlus from '$lib/icons/plus.svelte';
+	import IconMinus from '$lib/icons/minus.svelte';
+	import IconComment from '$lib/icons/comment.svelte';
 
 	export let item: Item;
 
@@ -26,17 +29,15 @@
 		items.set($items);
 	};
 
-	const increaseQuantity = (e: any) => {
-		const id = e.target.getAttribute('data-item-id');
-		const item = $itemsArray.find((x) => x.name === id);
+	const increaseQuantity = (id: string) => {
+		const item = $items[id];
 
 		item.quantity++;
 		items.set($items);
 	};
 
-	const decreaseQuantity = (e: any) => {
-		const id = e.target.getAttribute('data-item-id');
-		const item = $itemsArray.find((x) => x.name === id);
+	const decreaseQuantity = (id: string) => {
+		const item = $items[id];
 
 		if (item.quantity < 2) {
 			return;
@@ -59,26 +60,42 @@
 	};
 </script>
 
-<div>
+<div class="root">
 	<Checkbox
 		on:change={toggleActivation}
 		name={item.name}
 		id={item.id}
 		checked={Object.prototype.hasOwnProperty.call($items, item.id) && $items[item.id].active}
 	/>
+
 	<label for={item.id}>
 		{item.name}
 	</label>
 
-	<Button size="small" disabled={!item.active} data-item-id={item.name} on:click={increaseQuantity}
-		>+</Button
+	<Button
+		border={false}
+		size="small"
+		disabled={!item.active}
+		on:click={() => decreaseQuantity(item.id)}
 	>
-	<span>{item.quantity}</span>
-	<Button size="small" disabled={!item.active} data-item-id={item.name} on:click={decreaseQuantity}
-		>-</Button
-	>
+		<IconMinus />
+	</Button>
 
-	<Button disabled={!item.active} on:click={openCommentDialog}>Kommentar</Button>
+	<span>{item.quantity}</span>
+
+	<Button
+		border={false}
+		size="small"
+		disabled={!item.active}
+		data-item-id={item.id}
+		on:click={() => increaseQuantity(item.id)}
+	>
+		<IconPlus />
+	</Button>
+
+	<Button border={false} size="small" disabled={!item.active} on:click={openCommentDialog}>
+		<IconComment />
+	</Button>
 
 	{#if commentDialogOpen}
 		<Dialog
@@ -99,7 +116,14 @@
 </div>
 
 <style>
+	.root {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		margin-bottom: 0.5em;
+	}
 	label {
+		min-width: 13em;
 		user-select: none;
 	}
 </style>

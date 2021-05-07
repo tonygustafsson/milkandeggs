@@ -1,9 +1,17 @@
 <script lang="typescript">
-	export let disabled: boolean;
+	export let disabled: boolean = false;
 	export let size: 'large' | 'medium' | 'small' = 'medium';
+	export let border: boolean = true;
 </script>
 
-<button class="button" class:small={size === 'small'} {disabled} {...$$restProps} on:click>
+<button
+	class="button"
+	class:noborder={!border}
+	class:small={size === 'small'}
+	{disabled}
+	{...$$restProps}
+	on:click
+>
 	<slot />
 </button>
 
@@ -13,6 +21,10 @@
 		border: 1px #999 solid;
 		font-size: 1rem;
 		padding: 0.25em 0.5em;
+	}
+
+	.noborder {
+		border: 0;
 	}
 
 	.small {

@@ -6,6 +6,7 @@
 	import { items, itemsArray } from '../stores/items';
 	import { categoriesArray } from '../stores/categories';
 	import Checkbox from '$lib/checkbox.svelte';
+	import Button from '$lib/button.svelte';
 
 	$: getMatchingCategoryItems = (categoryId: string) => {
 		return $itemsArray.filter((x) => x.categoryId == categoryId && x.active);
@@ -30,7 +31,7 @@
 
 <section>
 	<div class="button-panel">
-		<button on:click={clear}>Allt klart</button>
+		<Button on:click={clear}>Allt klart</Button>
 	</div>
 
 	{#each $categoriesArray as category}

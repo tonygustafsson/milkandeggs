@@ -19,6 +19,7 @@
 	import { items, itemsArray } from '../stores/items';
 	import Button from '$lib/button.svelte';
 	import PlanningItem from '$lib/planning/item.svelte';
+	import IconClear from '$lib/icons/clear.svelte';
 
 	$: getMatchingCategoryItems = (categoryId: string) =>
 		$itemsArray.filter((x) => x.categoryId == categoryId);
@@ -36,7 +37,7 @@
 
 <div class="content">
 	<div class="button-panel">
-		<Button on:click={clear}>Töm listan</Button>
+		<Button on:click={clear}><IconClear /> Rensa</Button>
 	</div>
 
 	{#each $categoriesArray as category}
