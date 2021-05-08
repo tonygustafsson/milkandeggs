@@ -16,8 +16,9 @@
 		$itemsArray.find((x) => x.categoryId == categoryId && x.active);
 
 	const checkItem = (e) => {
-		$items[e.target.id].done = e.target.checked;
-		items.set($items);
+		if ($items[e.target.id]) {
+			$items[e.target.id].done = e.target.checked;
+		}
 	};
 
 	const clear = () => {
