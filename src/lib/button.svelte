@@ -21,6 +21,7 @@
 		border: 1px #999 solid;
 		font-size: 1rem;
 		padding: 0.25em 0.5em;
+		cursor: pointer;
 	}
 
 	.noborder {

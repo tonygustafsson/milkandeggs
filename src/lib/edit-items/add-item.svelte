@@ -4,6 +4,7 @@
 	import Textfield from '$lib/textfield.svelte';
 	import Button from '$lib/button.svelte';
 	import Dropdown from '$lib/dropdown.svelte';
+	import SaveIcon from '$lib/icons/save.svelte';
 
 	export let onClose: VoidFunction;
 
@@ -57,7 +58,10 @@
 			{/each}
 		</Dropdown>
 
-		<Button type="submit">Spara</Button>
+		<Button type="submit">
+			<SaveIcon />
+			Spara
+		</Button>
 	</form>
 </div>
 
