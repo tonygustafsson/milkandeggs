@@ -1,10 +1,13 @@
-<script>
+<script lang="typescript">
 	import { page } from '$app/stores';
+	import IconGear from '$lib/icons/gear.svelte';
 </script>
 
 <header>
 	<div class="corner">
-		<h1 class="heading">ShopDrop</h1>
+		<h1 class="heading">
+			<a sveltekit:prefetch href="/"> ShopDrop </a>
+		</h1>
 	</div>
 
 	<nav>
@@ -20,7 +23,15 @@
 	</nav>
 
 	<div class="corner">
-		<!-- TODO put something else here? github link? -->
+		<nav>
+			<ul>
+				<li class:active={$page.path === '/settings'}>
+					<a sveltekit:prefetch href="/settings">
+						<IconGear />
+					</a>
+				</li>
+			</ul>
+		</nav>
 	</div>
 </header>
 
@@ -30,6 +41,15 @@
 		flex-wrap: wrap;
 		justify-content: space-between;
 		background: #000;
+	}
+
+	h1 a {
+		color: #fff;
+	}
+
+	h1 a:hover {
+		color: #fff;
+		text-decoration: none;
 	}
 
 	@media (max-width: 600px) {
