@@ -32,6 +32,10 @@
 			return;
 		}
 
+		if (!$items) {
+			$items = {};
+		}
+
 		$items[newItemId] = {
 			id: newItemId,
 			name: form.name.value,

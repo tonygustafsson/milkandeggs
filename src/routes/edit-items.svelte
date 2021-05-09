@@ -15,6 +15,9 @@
 </script>
 
 <script lang="typescript">
+	import { onMount } from 'svelte';
+	import { settings } from '../stores/settings';
+	import { goto } from '$app/navigation';
 	import { categoriesArray } from '../stores/categories';
 	import { items, itemsArray } from '../stores/items';
 	import Dialog from '$lib/dialog.svelte';
@@ -22,6 +25,12 @@
 	import AddItem from '$lib/edit-items/add-item.svelte';
 	import IconPlus from '$lib/icons/plus.svelte';
 	import IconRemove from '$lib/icons/remove.svelte';
+
+	onMount(() => {
+		if (!$settings.listId) {
+			goto('/settings');
+		}
+	});
 
 	$: getMatchingCategoryItems = (categoryId: string) =>
 		$itemsArray.filter((x) => x.categoryId == categoryId);

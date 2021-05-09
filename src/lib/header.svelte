@@ -1,4 +1,5 @@
 <script lang="typescript">
+	import { settings } from '../stores/settings';
 	import { page } from '$app/stores';
 	import IconGear from '$lib/icons/gear.svelte';
 </script>
@@ -10,17 +11,19 @@
 		</h1>
 	</div>
 
-	<nav>
-		<ul>
-			<li class:active={$page.path === '/'}><a sveltekit:prefetch href="/">Listan</a></li>
-			<li class:active={$page.path === '/planning'}>
-				<a sveltekit:prefetch href="/planning">Planera</a>
-			</li>
-			<li class:active={$page.path === '/edit-items'}>
-				<a sveltekit:prefetch href="/edit-items">Varor</a>
-			</li>
-		</ul>
-	</nav>
+	{#if $settings.listId}
+		<nav>
+			<ul>
+				<li class:active={$page.path === '/'}><a sveltekit:prefetch href="/">Listan</a></li>
+				<li class:active={$page.path === '/planning'}>
+					<a sveltekit:prefetch href="/planning">Planera</a>
+				</li>
+				<li class:active={$page.path === '/edit-items'}>
+					<a sveltekit:prefetch href="/edit-items">Varor</a>
+				</li>
+			</ul>
+		</nav>
+	{/if}
 
 	<div class="corner">
 		<nav>

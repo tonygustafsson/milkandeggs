@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/database';
 import { writable, derived, Writable, Readable } from 'svelte/store';
 import type Item from '../types/item';
+import { settings } from './settings';
 
 type ItemList = Record<string, Item>;
 type ItemListArray = Array<Item>;
@@ -21,27 +22,46 @@ if (!firebase.apps.length) {
 	firebase.initializeApp(firebaseConfig);
 }
 
+let listId = null;
+
 // Create the empty store
 export const items: Writable<ItemList> = writable({});
 
-// Fetch data from Firebase and listen for updates
-const storedItemsTable = firebase.database().ref('list');
+// Fetch changes to settings store to get list ID
+settings.subscribe((value) => {
+	if (!value.listId) {
+		// Do not save empty list IDs
+		return;
+	}
 
-storedItemsTable.on('value', (snapshot) => {
-	items.set(snapshot.val());
+	listId = value.listId;
+
+	// Fetch data from Firebase and listen for updates
+	const storedItemsTable = firebase.database().ref(listId);
+
+	storedItemsTable.on('value', (snapshot) => {
+		items.set(snapshot.val());
+	});
+
+	return () => {
+		storedItemsTable.off('value');
+	};
 });
 
 // Fetch changes to store and save it to Firebase
 items.subscribe((value) => {
-	if (Object.keys(value).length <= 0) {
+	if (value && Object.keys(value).length <= 0) {
 		// Do not save empty set, from startup
 		return;
 	}
 
-	firebase.database().ref('list').set(value);
+	if (listId) {
+		firebase.database().ref(listId).set(value);
+	}
 });
 
 // Create a dirived store that is an array instead of an object, easier to loop through
-export const itemsArray: Readable<ItemListArray> = derived(items, ($items) =>
-	Object.values($items)
+export const itemsArray: Readable<ItemListArray> = derived(
+	items,
+	($items) => ($items && Object.values($items)) || []
 );

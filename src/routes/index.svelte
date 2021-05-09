@@ -3,11 +3,20 @@
 </script>
 
 <script lang="typescript">
+	import { onMount } from 'svelte';
+	import { settings } from '../stores/settings';
+	import { goto } from '$app/navigation';
 	import { items, itemsArray } from '../stores/items';
 	import { categoriesArray } from '../stores/categories';
 	import Checkbox from '$lib/checkbox.svelte';
 	import Button from '$lib/button.svelte';
 	import IconDone from '$lib/icons/done.svelte';
+
+	onMount(() => {
+		if (!$settings.listId) {
+			goto('/settings');
+		}
+	});
 
 	$: getMatchingCategoryItems = (categoryId: string) => {
 		return $itemsArray.filter((x) => x.categoryId == categoryId && x.active);
@@ -66,7 +75,7 @@
 		{/if}
 	{/each}
 
-	{#if $itemsArray.filter((x) => !x.active).length < 1}
+	{#if $itemsArray.filter((x) => x.active).length === 0}
 		<p><em>Inköpslistan är tom.</em></p>
 	{/if}
 </section>

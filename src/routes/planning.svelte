@@ -15,11 +15,20 @@
 </script>
 
 <script lang="typescript">
+	import { onMount } from 'svelte';
+	import { settings } from '../stores/settings';
+	import { goto } from '$app/navigation';
 	import { categoriesArray } from '../stores/categories';
 	import { items, itemsArray } from '../stores/items';
 	import Button from '$lib/button.svelte';
 	import PlanningItem from '$lib/planning/item.svelte';
 	import IconClear from '$lib/icons/clear.svelte';
+
+	onMount(() => {
+		if (!$settings.listId) {
+			goto('/settings');
+		}
+	});
 
 	$: getMatchingCategoryItems = (categoryId: string) =>
 		$itemsArray.filter((x) => x.categoryId == categoryId);
