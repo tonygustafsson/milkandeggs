@@ -9,8 +9,8 @@
 	class:noborder={!border}
 	class:small={size === 'small'}
 	{disabled}
-	{...$$restProps}
 	on:click
+	{...$$restProps}
 >
 	<slot />
 </button>

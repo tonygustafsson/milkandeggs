@@ -51,12 +51,16 @@
 		commentDialogOpen = true;
 	};
 
-	const comment = (e: any) => {
-		const id = e.target.getAttribute('data-item-id');
-		const item = $itemsArray.find((x) => x.name === id);
+	const saveComment = (e: any) => {
+		e.preventDefault();
 
-		item.comment = e.target.value;
+		const form = e.target;
+		const currentItem = $items[item.id];
+
+		currentItem.comment = form.comment.value;
 		items.set($items);
+
+		commentDialogOpen = false;
 	};
 </script>
 
@@ -103,14 +107,17 @@
 			onClose={() => (commentDialogOpen = false)}
 			title={`Kommentera ${item.name}`}
 		>
-			<Textfield
-				disabled={!item.active}
-				data-item-id={item.name}
-				value={item.comment || ''}
-				type="text"
-				placeholder="Kommentar"
-				on:change={comment}
-			/>
+			<form on:submit={saveComment}>
+				<Textfield
+					disabled={!item.active}
+					name="comment"
+					value={item.comment || ''}
+					type="text"
+					placeholder="Kommentar"
+				/>
+
+				<Button type="submit">Spara</Button>
+			</form>
 		</Dialog>
 	{/if}
 </div>
