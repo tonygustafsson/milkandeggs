@@ -2,21 +2,13 @@
 	import Button from '$lib/button.svelte';
 	import { items, itemsArray } from '../../stores/items';
 	import type Item from '../../types/item';
-	import Textfield from '$lib/textfield.svelte';
 	import Checkbox from '$lib/checkbox.svelte';
-	import Dialog from '$lib/dialog.svelte';
 	import IconPlus from '$lib/icons/plus.svelte';
 	import IconMinus from '$lib/icons/minus.svelte';
-	import IconComment from '$lib/icons/comment.svelte';
-	import IconRemove from '$lib/icons/remove.svelte';
-	import IconSave from '$lib/icons/save.svelte';
-	import IconDone from '$lib/icons/done.svelte';
-	import IconClose from '$lib/icons/close.svelte';
+	import RemoveItem from '$lib/planning/removeItem.svelte';
+	import CommentItem from '$lib/planning/commentItem.svelte';
 
 	export let item: Item;
-
-	$: commentDialogOpen = false;
-	$: removeDialogOpen = false;
 
 	const toggleActivation = (e: any) => {
 		const active = e.target.checked;
@@ -50,35 +42,6 @@
 
 		item.quantity--;
 		items.set($items);
-	};
-
-	const openCommentDialog = () => {
-		commentDialogOpen = true;
-	};
-
-	const saveComment = (e: any) => {
-		e.preventDefault();
-
-		const form = e.target;
-		const currentItem = $items[item.id];
-
-		currentItem.comment = form.comment.value;
-		items.set($items);
-
-		commentDialogOpen = false;
-	};
-
-	const openRemoveDialog = () => {
-		removeDialogOpen = true;
-	};
-
-	const deleteItem = (itemId: string, e: any) => {
-		e.preventDefault();
-
-		delete $items[itemId];
-		items.set($items);
-
-		removeDialogOpen = false;
 	};
 </script>
 
@@ -119,58 +82,11 @@
 				<IconPlus />
 			</Button>
 
-			<Button border={false} size="small" disabled={!item.active} on:click={openCommentDialog}>
-				<IconComment active={!!item.comment} />
-			</Button>
+			<CommentItem {item} />
 		</div>
 
-		<Button size="small" border={false} on:click={openRemoveDialog}>
-			<IconRemove />
-		</Button>
+		<RemoveItem {item} />
 	</div>
-
-	{#if commentDialogOpen}
-		<Dialog
-			open={commentDialogOpen}
-			onClose={() => (commentDialogOpen = false)}
-			title={`Kommentera ${item.name}`}
-		>
-			<form on:submit={saveComment}>
-				<Textfield
-					disabled={!item.active}
-					name="comment"
-					value={item.comment || ''}
-					type="text"
-					placeholder="Kommentar"
-				/>
-
-				<Button type="submit">
-					<IconSave />
-					Spara
-				</Button>
-			</form>
-		</Dialog>
-	{/if}
-
-	{#if removeDialogOpen}
-		<Dialog
-			open={removeDialogOpen}
-			onClose={() => (removeDialogOpen = false)}
-			title={`Vill du radera ${item.name}?`}
-		>
-			<form on:submit={(e) => deleteItem(item.id, e)}>
-				<Button type="submit">
-					<IconDone />
-					Ja
-				</Button>
-
-				<Button on:click={() => (removeDialogOpen = false)}>
-					<IconRemove />
-					Nej
-				</Button>
-			</form>
-		</Dialog>
-	{/if}
 </div>
 
 <style>
