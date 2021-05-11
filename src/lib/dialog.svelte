@@ -49,6 +49,7 @@
 		box-sizing: border-box;
 		text-align: left;
 		padding: 0;
+		z-index: 10;
 	}
 
 	dialog[open] {
