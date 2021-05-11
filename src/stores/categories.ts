@@ -1,10 +1,6 @@
 import { writable, derived, Writable, Readable } from 'svelte/store';
 import categoriesData from '../data/categories.json';
-
-export type Category = {
-	id: string;
-	name: string;
-};
+import type Category from '../types/category';
 
 type CategoryList = Record<string, Category>;
 type CategoryListArray = Array<Category>;

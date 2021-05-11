@@ -1,8 +1,5 @@
 import { writable, Writable } from 'svelte/store';
-
-type Settings = {
-	listId: string | null;
-};
+import type Settings from '../types/settings';
 
 const localStorageKey = 'settings';
 
