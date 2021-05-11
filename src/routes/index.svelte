@@ -11,6 +11,8 @@
 	import Checkbox from '$lib/checkbox.svelte';
 	import Button from '$lib/button.svelte';
 	import IconDone from '$lib/icons/done.svelte';
+	import listItem from '$lib/list/listItem.svelte';
+	import ListItem from '$lib/list/listItem.svelte';
 
 	onMount(() => {
 		if (!$settings.listId) {
@@ -23,12 +25,6 @@
 	};
 	$: categoryHasItems = (categoryId: string) =>
 		$itemsArray.find((x) => x.categoryId == categoryId && x.active);
-
-	const checkItem = (e) => {
-		if ($items[e.target.id]) {
-			$items[e.target.id].done = e.target.checked;
-		}
-	};
 
 	const clear = () => {
 		$itemsArray.forEach((item) => (item.done = true));
@@ -54,24 +50,7 @@
 				<h3>{category.name}</h3>
 
 				{#each getMatchingCategoryItems(category.id) as item}
-					<div class="list-item">
-						<Checkbox
-							on:change={checkItem}
-							name={item.name}
-							id={item.id}
-							checked={Object.prototype.hasOwnProperty.call($items, item.id) &&
-								$items[item.id].done}
-						/>
-						<label class:done={item.done} for={item.id}>
-							{item.name}
-							{#if item.quantity > 1}
-								{item.quantity} st
-							{/if}
-						</label>
-						{#if item.comment}
-							<p class="comment">{item.comment}</p>
-						{/if}
-					</div>
+					<ListItem {item} />
 				{/each}
 			{/if}
 		{/each}
@@ -83,32 +62,15 @@
 </section>
 
 <style>
-	.done {
-		text-decoration: line-through;
-	}
-	label {
-		user-select: none;
-	}
 	.button-panel {
 		text-align: right;
 		width: 100%;
 		margin-bottom: 2em;
 	}
-	.comment {
-		font-size: 10px;
-		color: #666;
-		text-indent: 2em;
-		user-select: none;
-	}
 	.list {
 		width: 100%;
 		margin: 0 auto;
 	}
-
-	.list-item {
-		margin-bottom: 0.6em;
-	}
-
 	@media (min-width: 600px) {
 		.list {
 			width: 50%;

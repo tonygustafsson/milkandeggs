@@ -143,6 +143,7 @@
 		display: flex;
 		align-items: center;
 		width: 100%;
+		min-height: 24px;
 		margin-bottom: 0.5em;
 	}
 	.left {

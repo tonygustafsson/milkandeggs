@@ -21,7 +21,7 @@
 	import { categoriesArray } from '../stores/categories';
 	import { items, itemsArray } from '../stores/items';
 	import Button from '$lib/button.svelte';
-	import PlanningItem from '$lib/planning/item.svelte';
+	import PlanningItem from '$lib/planning/planningItem.svelte';
 	import AddItem from '$lib/planning/add-item.svelte';
 	import IconClear from '$lib/icons/clear.svelte';
 	import IconPlus from '$lib/icons/plus.svelte';
