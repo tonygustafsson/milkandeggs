@@ -8,8 +8,17 @@
 	import Textfield from '$lib/textfield.svelte';
 
 	export let item: Item;
+	let formEl;
 
 	$: commentDialogOpen = false;
+
+	const openCommentDialog = () => {
+		commentDialogOpen = true;
+
+		setTimeout(() => {
+			formEl.comment.focus();
+		}, 0);
+	};
 
 	const saveComment = (e: any) => {
 		e.preventDefault();
@@ -24,25 +33,27 @@
 	};
 </script>
 
-<Button size="small" border={false} on:click={() => (commentDialogOpen = true)}>
+<Button size="small" border={false} on:click={openCommentDialog}>
 	<IconComment active={!!item.comment} />
 </Button>
 
-{#if commentDialogOpen}
-	<Dialog open={true} onClose={() => (commentDialogOpen = false)} title={`Kommentera ${item.name}`}>
-		<form on:submit={saveComment}>
-			<Textfield
-				disabled={!item.active}
-				name="comment"
-				value={item.comment || ''}
-				type="text"
-				placeholder="Kommentar"
-			/>
+<Dialog
+	open={commentDialogOpen}
+	onClose={() => (commentDialogOpen = false)}
+	title={`Kommentera ${item.name}`}
+>
+	<form bind:this={formEl} on:submit={saveComment}>
+		<Textfield
+			disabled={!item.active}
+			name="comment"
+			value={item.comment || ''}
+			type="text"
+			placeholder="Kommentar"
+		/>
 
-			<Button type="submit">
-				<IconSave />
-				Spara
-			</Button>
-		</form>
-	</Dialog>
-{/if}
+		<Button type="submit">
+			<IconSave />
+			Spara
+		</Button>
+	</form>
+</Dialog>

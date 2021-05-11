@@ -5,8 +5,11 @@
 	import Button from '$lib/button.svelte';
 	import Dropdown from '$lib/dropdown.svelte';
 	import IconSave from '$lib/icons/save.svelte';
+	import IconPlus from '$lib/icons/plus.svelte';
+	import Dialog from '$lib/dialog.svelte';
 
-	export let onClose: VoidFunction;
+	$: addItemDialogOpen = false;
+	let formEl;
 
 	const createItemIdFromName = (name: string) => {
 		let id = name.replace(/\ /g, '-');
@@ -20,6 +23,14 @@
 		id = id.replace(/[^0-9a-z-]/gi, '');
 
 		return id;
+	};
+
+	const openAddItemDialog = () => {
+		addItemDialogOpen = true;
+
+		setTimeout(() => {
+			formEl.name.focus();
+		}, 0);
 	};
 
 	const addItem = (e) => {
@@ -48,12 +59,21 @@
 
 		items.set($items);
 
-		onClose();
+		addItemDialogOpen = false;
 	};
 </script>
 
-<div>
-	<form on:submit={addItem}>
+<Button on:click={openAddItemDialog}>
+	<IconPlus />
+	Lägg till vara
+</Button>
+
+<Dialog
+	open={addItemDialogOpen}
+	onClose={() => (addItemDialogOpen = false)}
+	title={`Lägg till vara`}
+>
+	<form bind:this={formEl} on:submit={addItem}>
 		<Textfield type="text" name="name" />
 
 		<Dropdown name="category">
@@ -67,7 +87,4 @@
 			Spara
 		</Button>
 	</form>
-</div>
-
-<style>
-</style>
+</Dialog>

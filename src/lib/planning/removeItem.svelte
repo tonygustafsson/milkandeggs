@@ -10,6 +10,10 @@
 
 	$: removeDialogOpen = false;
 
+	const openRemoveDialog = () => {
+		removeDialogOpen = true;
+	};
+
 	const deleteItem = (itemId: string, e: any) => {
 		e.preventDefault();
 
@@ -24,22 +28,20 @@
 	<IconRemove />
 </Button>
 
-{#if removeDialogOpen}
-	<Dialog
-		open={true}
-		onClose={() => (removeDialogOpen = false)}
-		title={`Vill du radera ${item.name}?`}
-	>
-		<form on:submit={(e) => deleteItem(item.id, e)}>
-			<Button type="submit">
-				<IconDone />
-				Ja
-			</Button>
+<Dialog
+	open={removeDialogOpen}
+	onClose={() => (removeDialogOpen = false)}
+	title={`Vill du radera ${item.name}?`}
+>
+	<form on:submit={(e) => deleteItem(item.id, e)}>
+		<Button type="submit">
+			<IconDone />
+			Ja
+		</Button>
 
-			<Button on:click={() => (removeDialogOpen = false)}>
-				<IconRemove />
-				Nej
-			</Button>
-		</form>
-	</Dialog>
-{/if}
+		<Button on:click={(e) => (e.preventDefault(), (removeDialogOpen = false))}>
+			<IconRemove />
+			Nej
+		</Button>
+	</form>
+</Dialog>

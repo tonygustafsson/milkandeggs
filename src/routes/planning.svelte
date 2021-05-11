@@ -37,8 +37,6 @@
 		$itemsArray.filter((x) => x.categoryId == categoryId);
 	$: categoryHasItems = (categoryId: string) => $itemsArray.find((x) => x.categoryId == categoryId);
 
-	$: addItemDialogOpen = false;
-
 	const clear = () => {
 		$itemsArray.forEach((x) => ((x.active = false), (x.quantity = 1), (x.comment = '')));
 		items.set($items);
@@ -53,20 +51,7 @@
 	<div class="button-panel">
 		<Button on:click={clear}><IconClear /> Töm</Button>
 
-		<Button on:click={() => (addItemDialogOpen = !addItemDialogOpen)}>
-			<IconPlus />
-			Lägg till vara
-		</Button>
-
-		{#if addItemDialogOpen}
-			<Dialog
-				open={addItemDialogOpen}
-				onClose={() => (addItemDialogOpen = false)}
-				title={`Lägg till vara`}
-			>
-				<AddItem onClose={() => (addItemDialogOpen = false)} />
-			</Dialog>
-		{/if}
+		<AddItem />
 	</div>
 
 	<div class="list">
