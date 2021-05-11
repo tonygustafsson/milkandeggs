@@ -65,7 +65,7 @@
 	}
 
 	.modal-title h4 {
-		margin: 0.5em 0 1em 1em;
+		margin: 0.5em 3em 1em 1em;
 	}
 
 	.close-button {

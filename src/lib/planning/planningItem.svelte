@@ -10,10 +10,13 @@
 	import IconComment from '$lib/icons/comment.svelte';
 	import IconRemove from '$lib/icons/remove.svelte';
 	import IconSave from '$lib/icons/save.svelte';
+	import IconDone from '$lib/icons/done.svelte';
+	import IconClose from '$lib/icons/close.svelte';
 
 	export let item: Item;
 
 	$: commentDialogOpen = false;
+	$: removeDialogOpen = false;
 
 	const toggleActivation = (e: any) => {
 		const active = e.target.checked;
@@ -65,11 +68,17 @@
 		commentDialogOpen = false;
 	};
 
-	const deleteItem = (itemId: string, e: MouseEvent) => {
+	const openRemoveDialog = () => {
+		removeDialogOpen = true;
+	};
+
+	const deleteItem = (itemId: string, e: any) => {
 		e.preventDefault();
 
 		delete $items[itemId];
 		items.set($items);
+
+		removeDialogOpen = false;
 	};
 </script>
 
@@ -87,33 +96,35 @@
 		</label>
 	</div>
 
-	<div class="right" class:disabled={!$items[item.id].active}>
-		<Button
-			border={false}
-			size="small"
-			disabled={!item.active}
-			on:click={() => decreaseQuantity(item.id)}
-		>
-			<IconMinus />
-		</Button>
+	<div class="right">
+		<div class="action-bar" class:action-bar-disabled={!$items[item.id].active}>
+			<Button
+				border={false}
+				size="small"
+				disabled={!item.active}
+				on:click={() => decreaseQuantity(item.id)}
+			>
+				<IconMinus />
+			</Button>
 
-		<span>{item.quantity}</span>
+			<span>{item.quantity}</span>
 
-		<Button
-			border={false}
-			size="small"
-			disabled={!item.active}
-			data-item-id={item.id}
-			on:click={() => increaseQuantity(item.id)}
-		>
-			<IconPlus />
-		</Button>
+			<Button
+				border={false}
+				size="small"
+				disabled={!item.active}
+				data-item-id={item.id}
+				on:click={() => increaseQuantity(item.id)}
+			>
+				<IconPlus />
+			</Button>
 
-		<Button border={false} size="small" disabled={!item.active} on:click={openCommentDialog}>
-			<IconComment active={!!item.comment} />
-		</Button>
+			<Button border={false} size="small" disabled={!item.active} on:click={openCommentDialog}>
+				<IconComment active={!!item.comment} />
+			</Button>
+		</div>
 
-		<Button size="small" border={false} on:click={(e) => deleteItem(item.id, e)}>
+		<Button size="small" border={false} on:click={openRemoveDialog}>
 			<IconRemove />
 		</Button>
 	</div>
@@ -140,6 +151,26 @@
 			</form>
 		</Dialog>
 	{/if}
+
+	{#if removeDialogOpen}
+		<Dialog
+			open={removeDialogOpen}
+			onClose={() => (removeDialogOpen = false)}
+			title={`Vill du radera ${item.name}?`}
+		>
+			<form on:submit={(e) => deleteItem(item.id, e)}>
+				<Button type="submit">
+					<IconDone />
+					Ja
+				</Button>
+
+				<Button on:click={() => (removeDialogOpen = false)}>
+					<IconRemove />
+					Nej
+				</Button>
+			</form>
+		</Dialog>
+	{/if}
 </div>
 
 <style>
@@ -161,7 +192,10 @@
 		min-width: 13em;
 		user-select: none;
 	}
-	.disabled {
+	.action-bar {
+		display: inline-block;
+	}
+	.action-bar-disabled {
 		opacity: 0.3;
 		pointer-events: none;
 		user-select: none;
