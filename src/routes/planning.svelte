@@ -22,7 +22,10 @@
 	import { items, itemsArray } from '../stores/items';
 	import Button from '$lib/button.svelte';
 	import PlanningItem from '$lib/planning/item.svelte';
+	import AddItem from '$lib/planning/add-item.svelte';
 	import IconClear from '$lib/icons/clear.svelte';
+	import IconPlus from '$lib/icons/plus.svelte';
+	import Dialog from '$lib/dialog.svelte';
 
 	onMount(() => {
 		if (!$settings.listId) {
@@ -33,6 +36,8 @@
 	$: getMatchingCategoryItems = (categoryId: string) =>
 		$itemsArray.filter((x) => x.categoryId == categoryId);
 	$: categoryHasItems = (categoryId: string) => $itemsArray.find((x) => x.categoryId == categoryId);
+
+	$: addItemDialogOpen = false;
 
 	const clear = () => {
 		$itemsArray.forEach((x) => ((x.active = false), (x.quantity = 1), (x.comment = '')));
@@ -47,6 +52,21 @@
 <div class="content">
 	<div class="button-panel">
 		<Button on:click={clear}><IconClear /> Rensa</Button>
+
+		<Button on:click={() => (addItemDialogOpen = !addItemDialogOpen)}>
+			<IconPlus />
+			Lägg till vara
+		</Button>
+
+		{#if addItemDialogOpen}
+			<Dialog
+				open={addItemDialogOpen}
+				onClose={() => (addItemDialogOpen = false)}
+				title={`Lägg till vara`}
+			>
+				<AddItem onClose={() => (addItemDialogOpen = false)} />
+			</Dialog>
+		{/if}
 	</div>
 
 	{#each $categoriesArray as category}

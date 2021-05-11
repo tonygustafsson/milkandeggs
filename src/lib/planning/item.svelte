@@ -8,6 +8,7 @@
 	import IconPlus from '$lib/icons/plus.svelte';
 	import IconMinus from '$lib/icons/minus.svelte';
 	import IconComment from '$lib/icons/comment.svelte';
+	import IconRemove from '$lib/icons/remove.svelte';
 
 	export let item: Item;
 
@@ -62,6 +63,13 @@
 
 		commentDialogOpen = false;
 	};
+
+	const deleteItem = (itemId: string, e: MouseEvent) => {
+		e.preventDefault();
+
+		delete $items[itemId];
+		items.set($items);
+	};
 </script>
 
 <div class="root">
@@ -99,6 +107,10 @@
 
 	<Button border={false} size="small" disabled={!item.active} on:click={openCommentDialog}>
 		<IconComment />
+	</Button>
+
+	<Button size="small" border={false} on:click={(e) => deleteItem(item.id, e)}>
+		<IconRemove />
 	</Button>
 
 	{#if commentDialogOpen}

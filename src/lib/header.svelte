@@ -18,9 +18,6 @@
 				<li class:active={$page.path === '/planning'}>
 					<a sveltekit:prefetch href="/planning">Planera</a>
 				</li>
-				<li class:active={$page.path === '/edit-items'}>
-					<a sveltekit:prefetch href="/edit-items">Varor</a>
-				</li>
 			</ul>
 		</nav>
 	{/if}
