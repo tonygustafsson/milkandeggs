@@ -80,6 +80,10 @@
 		.heading {
 			font-size: 1.25rem;
 		}
+
+		nav {
+			width: 100%;
+		}
 	}
 
 	nav {

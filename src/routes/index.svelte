@@ -48,32 +48,34 @@
 		</Button>
 	</div>
 
-	{#each $categoriesArray as category}
-		{#if categoryHasItems(category.id)}
-			<h3>{category.name}</h3>
+	<div class="list">
+		{#each $categoriesArray as category}
+			{#if categoryHasItems(category.id)}
+				<h3>{category.name}</h3>
 
-			{#each getMatchingCategoryItems(category.id) as item}
-				<p>
-					<Checkbox
-						on:change={checkItem}
-						name={item.name}
-						id={item.id}
-						hidden
-						checked={Object.prototype.hasOwnProperty.call($items, item.id) && $items[item.id].done}
-					/>
-					<label class:done={item.done} for={item.id}>
-						{item.name}
-						{#if item.quantity > 1}
-							{item.quantity} st
+				{#each getMatchingCategoryItems(category.id) as item}
+					<div class="list-item">
+						<Checkbox
+							on:change={checkItem}
+							name={item.name}
+							id={item.id}
+							checked={Object.prototype.hasOwnProperty.call($items, item.id) &&
+								$items[item.id].done}
+						/>
+						<label class:done={item.done} for={item.id}>
+							{item.name}
+							{#if item.quantity > 1}
+								{item.quantity} st
+							{/if}
+						</label>
+						{#if item.comment}
+							<p class="comment">{item.comment}</p>
 						{/if}
-					</label>
-					{#if item.comment}
-						<p class="comment">{item.comment}</p>
-					{/if}
-				</p>
-			{/each}
-		{/if}
-	{/each}
+					</div>
+				{/each}
+			{/if}
+		{/each}
+	</div>
 
 	{#if $itemsArray.filter((x) => x.active).length === 0}
 		<p><em>Inköpslistan är tom.</em></p>
@@ -97,5 +99,19 @@
 		color: #666;
 		text-indent: 2em;
 		user-select: none;
+	}
+	.list {
+		width: 100%;
+		margin: 0 auto;
+	}
+
+	.list-item {
+		margin-bottom: 0.6em;
+	}
+
+	@media (min-width: 600px) {
+		.list {
+			width: 50%;
+		}
 	}
 </style>

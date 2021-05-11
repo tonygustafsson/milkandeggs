@@ -73,45 +73,49 @@
 </script>
 
 <div class="root">
-	<Checkbox
-		on:change={toggleActivation}
-		name={item.name}
-		id={item.id}
-		checked={Object.prototype.hasOwnProperty.call($items, item.id) && $items[item.id].active}
-	/>
+	<div class="left">
+		<Checkbox
+			on:change={toggleActivation}
+			name={item.name}
+			id={item.id}
+			checked={Object.prototype.hasOwnProperty.call($items, item.id) && $items[item.id].active}
+		/>
 
-	<label for={item.id}>
-		{item.name}
-	</label>
+		<label for={item.id}>
+			{item.name}
+		</label>
+	</div>
 
-	<Button
-		border={false}
-		size="small"
-		disabled={!item.active}
-		on:click={() => decreaseQuantity(item.id)}
-	>
-		<IconMinus />
-	</Button>
+	<div class="right">
+		<Button
+			border={false}
+			size="small"
+			disabled={!item.active}
+			on:click={() => decreaseQuantity(item.id)}
+		>
+			<IconMinus />
+		</Button>
 
-	<span>{item.quantity}</span>
+		<span>{item.quantity}</span>
 
-	<Button
-		border={false}
-		size="small"
-		disabled={!item.active}
-		data-item-id={item.id}
-		on:click={() => increaseQuantity(item.id)}
-	>
-		<IconPlus />
-	</Button>
+		<Button
+			border={false}
+			size="small"
+			disabled={!item.active}
+			data-item-id={item.id}
+			on:click={() => increaseQuantity(item.id)}
+		>
+			<IconPlus />
+		</Button>
 
-	<Button border={false} size="small" disabled={!item.active} on:click={openCommentDialog}>
-		<IconComment />
-	</Button>
+		<Button border={false} size="small" disabled={!item.active} on:click={openCommentDialog}>
+			<IconComment />
+		</Button>
 
-	<Button size="small" border={false} on:click={(e) => deleteItem(item.id, e)}>
-		<IconRemove />
-	</Button>
+		<Button size="small" border={false} on:click={(e) => deleteItem(item.id, e)}>
+			<IconRemove />
+		</Button>
+	</div>
 
 	{#if commentDialogOpen}
 		<Dialog
@@ -141,8 +145,21 @@
 		width: 100%;
 		margin-bottom: 0.5em;
 	}
+	.left {
+		flex: 1.8 0 0;
+	}
+	.right {
+		flex: 1 0 0;
+		text-align: right;
+	}
 	label {
 		min-width: 13em;
 		user-select: none;
+	}
+
+	@media (min-width: 600px) {
+		.left {
+			flex: 2 0 0;
+		}
 	}
 </style>

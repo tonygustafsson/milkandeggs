@@ -69,17 +69,19 @@
 		{/if}
 	</div>
 
-	{#each $categoriesArray as category}
-		<h3>{category.name}</h3>
+	<div class="list">
+		{#each $categoriesArray as category}
+			<h3>{category.name}</h3>
 
-		{#if categoryHasItems(category.id)}
-			{#each getMatchingCategoryItems(category.id) as item}
-				<PlanningItem {item} />
-			{/each}
-		{:else}
-			<p><em>Inga varor under denna kategori ännu.</em></p>
-		{/if}
-	{/each}
+			{#if categoryHasItems(category.id)}
+				{#each getMatchingCategoryItems(category.id) as item}
+					<PlanningItem {item} />
+				{/each}
+			{:else}
+				<p><em>Inga varor under denna kategori ännu.</em></p>
+			{/if}
+		{/each}
+	</div>
 </div>
 
 <style>
@@ -87,5 +89,16 @@
 		text-align: right;
 		width: 100%;
 		margin-bottom: 2em;
+	}
+
+	.list {
+		width: 100%;
+		margin: 0 auto;
+	}
+
+	@media (min-width: 600px) {
+		.list {
+			width: 50%;
+		}
 	}
 </style>
