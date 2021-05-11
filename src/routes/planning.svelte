@@ -51,7 +51,7 @@
 
 <div class="content">
 	<div class="button-panel">
-		<Button on:click={clear}><IconClear /> Rensa</Button>
+		<Button on:click={clear}><IconClear /> Töm</Button>
 
 		<Button on:click={() => (addItemDialogOpen = !addItemDialogOpen)}>
 			<IconPlus />

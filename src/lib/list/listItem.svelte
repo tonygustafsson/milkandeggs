@@ -13,30 +13,40 @@
 </script>
 
 <div class="root">
-	<Checkbox
-		on:change={checkItem}
-		name={item.name}
-		id={item.id}
-		checked={Object.prototype.hasOwnProperty.call($items, item.id) && $items[item.id].done}
-	/>
-	<label class:done={item.done} for={item.id}>
-		{item.name}
-		{#if item.quantity > 1}
-			{item.quantity} st
-		{/if}
-	</label>
+	<div>
+		<Checkbox
+			on:change={checkItem}
+			name={item.name}
+			id={item.id}
+			checked={Object.prototype.hasOwnProperty.call($items, item.id) && $items[item.id].done}
+		/>
+		<label class:done={item.done} for={item.id}>
+			{item.name}
+			{#if item.quantity > 1}
+				{item.quantity} st
+			{/if}
+		</label>
+	</div>
+
 	{#if item.comment}
-		<p class="comment">{item.comment}</p>
+		<div>
+			<p class="comment">{item.comment}</p>
+		</div>
 	{/if}
 </div>
 
 <style>
 	.root {
 		display: flex;
+		flex-wrap: wrap;
 		align-items: center;
 		width: 100%;
 		min-height: 24px;
 		margin-bottom: 0.5em;
+	}
+	.root > div {
+		flex: 1 0 100%;
+		width: 100%;
 	}
 	.done {
 		text-decoration: line-through;
@@ -45,9 +55,11 @@
 		user-select: none;
 	}
 	.comment {
-		font-size: 10px;
+		font-size: 12px;
 		color: #666;
-		text-indent: 2em;
+		text-indent: 3em;
+		margin-top: 4px;
+		margin-bottom: 0;
 		user-select: none;
 	}
 </style>

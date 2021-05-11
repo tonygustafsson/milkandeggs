@@ -9,6 +9,7 @@
 	import IconMinus from '$lib/icons/minus.svelte';
 	import IconComment from '$lib/icons/comment.svelte';
 	import IconRemove from '$lib/icons/remove.svelte';
+	import IconSave from '$lib/icons/save.svelte';
 
 	export let item: Item;
 
@@ -78,7 +79,7 @@
 			on:change={toggleActivation}
 			name={item.name}
 			id={item.id}
-			checked={Object.prototype.hasOwnProperty.call($items, item.id) && $items[item.id].active}
+			checked={$items[item.id].active}
 		/>
 
 		<label for={item.id}>
@@ -86,7 +87,7 @@
 		</label>
 	</div>
 
-	<div class="right">
+	<div class="right" class:disabled={!$items[item.id].active}>
 		<Button
 			border={false}
 			size="small"
@@ -132,7 +133,10 @@
 					placeholder="Kommentar"
 				/>
 
-				<Button type="submit">Spara</Button>
+				<Button type="submit">
+					<IconSave />
+					Spara
+				</Button>
 			</form>
 		</Dialog>
 	{/if}
@@ -155,6 +159,11 @@
 	}
 	label {
 		min-width: 13em;
+		user-select: none;
+	}
+	.disabled {
+		opacity: 0.3;
+		pointer-events: none;
 		user-select: none;
 	}
 
