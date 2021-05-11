@@ -22,7 +22,7 @@
 	import { items, itemsArray } from '../stores/items';
 	import Button from '$lib/button.svelte';
 	import PlanningItem from '$lib/planning/planningItem.svelte';
-	import AddItem from '$lib/planning/add-item.svelte';
+	import AddItem from '$lib/planning/addItem.svelte';
 	import IconClear from '$lib/icons/clear.svelte';
 	import IconPlus from '$lib/icons/plus.svelte';
 	import Dialog from '$lib/dialog.svelte';
