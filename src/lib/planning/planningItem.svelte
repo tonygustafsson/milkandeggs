@@ -110,7 +110,7 @@
 		</Button>
 
 		<Button border={false} size="small" disabled={!item.active} on:click={openCommentDialog}>
-			<IconComment />
+			<IconComment active={!!item.comment} />
 		</Button>
 
 		<Button size="small" border={false} on:click={(e) => deleteItem(item.id, e)}>
