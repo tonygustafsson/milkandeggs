@@ -44,6 +44,9 @@
 		min-height: 24px;
 		margin-bottom: 0.5em;
 	}
+	.root:nth-child(2n + 1) {
+		background-color: #fafafa;
+	}
 	.root > div {
 		flex: 1 0 100%;
 		width: 100%;

@@ -97,6 +97,9 @@
 		min-height: 24px;
 		margin-bottom: 0.5em;
 	}
+	.root:nth-child(2n + 1) {
+		background-color: #fafafa;
+	}
 	.left {
 		flex: 1.8 0 0;
 	}
