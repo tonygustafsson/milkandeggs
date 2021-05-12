@@ -18,6 +18,7 @@
 	import { settings } from '../stores/settings';
 	import Button from '$lib/button.svelte';
 	import TextField from '$lib/textfield.svelte';
+	import IconRemove from '$lib/icons/remove.svelte';
 
 	const generateGuid = () =>
 		Math.floor((1 + Math.random()) * 0x10000000000)
@@ -52,7 +53,10 @@
 	{#if $settings.listId}
 		<p>List ID: {$settings.listId}</p>
 
-		<Button on:click={forgetList}>Glöm lista</Button>
+		<Button on:click={forgetList}>
+			<IconRemove />
+			Glöm lista
+		</Button>
 	{:else}
 		<p>Du har ingen aktiv lista kopplad. Skapa en ny eller koppla en existerande lista.</p>
 
