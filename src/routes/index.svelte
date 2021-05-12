@@ -8,10 +8,9 @@
 	import { goto } from '$app/navigation';
 	import { items, itemsArray } from '../stores/items';
 	import { categoriesArray } from '../stores/categories';
-	import Checkbox from '$lib/checkbox.svelte';
 	import Button from '$lib/button.svelte';
 	import IconDone from '$lib/icons/done.svelte';
-	import listItem from '$lib/list/listItem.svelte';
+	import IconRemove from '$lib/icons/remove.svelte';
 	import ListItem from '$lib/list/listItem.svelte';
 
 	onMount(() => {
@@ -41,6 +40,11 @@
 		<Button on:click={clear}>
 			<IconDone />
 			Allt klart
+		</Button>
+
+		<Button on:click={clear}>
+			<IconRemove />
+			Ta bort markerade
 		</Button>
 	</div>
 

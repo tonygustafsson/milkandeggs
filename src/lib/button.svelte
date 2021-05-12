@@ -20,8 +20,13 @@
 		background-color: #fff;
 		border: 1px #999 solid;
 		font-size: 1rem;
-		padding: 0.25em 0.5em;
+		padding: 0.35em 0.5em;
 		cursor: pointer;
+	}
+
+	:global(.button > svg) {
+		vertical-align: bottom !important;
+		margin-right: 0.2em;
 	}
 
 	.noborder {
