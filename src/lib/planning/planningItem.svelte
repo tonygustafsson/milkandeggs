@@ -70,7 +70,7 @@
 				<IconMinus />
 			</Button>
 
-			<span>{item.quantity}</span>
+			<span class="quantity">{item.quantity}</span>
 
 			<Button
 				border={false}
@@ -103,6 +103,9 @@
 	.right {
 		flex: 1 0 0;
 		text-align: right;
+	}
+	.quantity {
+		vertical-align: middle;
 	}
 	label {
 		min-width: 13em;
