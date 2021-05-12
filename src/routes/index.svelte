@@ -25,8 +25,22 @@
 	$: categoryHasItems = (categoryId: string) =>
 		$itemsArray.find((x) => x.categoryId == categoryId && x.active);
 
-	const clear = () => {
+	const allDone = () => {
 		$itemsArray.forEach((item) => (item.done = true));
+		items.set($items);
+	};
+
+	const clearDone = () => {
+		$itemsArray.forEach((item) => {
+			if (!item.done) {
+				return;
+			}
+
+			item.active = false;
+			item.comment = '';
+			item.quantity = 1;
+			item.done = false;
+		});
 		items.set($items);
 	};
 </script>
@@ -37,14 +51,14 @@
 
 <section>
 	<div class="button-panel">
-		<Button on:click={clear}>
+		<Button on:click={allDone}>
 			<IconDone />
 			Allt klart
 		</Button>
 
-		<Button on:click={clear}>
+		<Button on:click={clearDone}>
 			<IconRemove />
-			Ta bort markerade
+			Rensa markerade
 		</Button>
 	</div>
 
