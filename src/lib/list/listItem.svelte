@@ -52,7 +52,10 @@
 		text-decoration: line-through;
 	}
 	label {
+		display: inline-block;
+		margin-top: 2px;
 		user-select: none;
+		vertical-align: text-top;
 	}
 	.comment {
 		font-size: 12px;

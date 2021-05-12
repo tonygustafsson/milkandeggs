@@ -106,6 +106,9 @@
 	}
 	label {
 		min-width: 13em;
+		display: inline-block;
+		margin-top: 2px;
+		vertical-align: text-top;
 		user-select: none;
 	}
 	.action-bar {
