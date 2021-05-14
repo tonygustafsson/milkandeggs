@@ -1,6 +1,6 @@
 <script lang="typescript">
-	export let id: string = '';
-	export let name: string = '';
+	export let id = '';
+	export let name = '';
 </script>
 
 <select {id} {name}>

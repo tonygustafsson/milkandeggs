@@ -13,7 +13,7 @@
 	let formEl;
 
 	const createItemIdFromName = (name: string) => {
-		let id = name.replace(/\ /g, '-');
+		let id = name.replace(/ /g, '-');
 		id = id.replace(/å/g, 'a');
 		id = id.replace(/Å/g, 'a');
 		id = id.replace(/ä/g, 'a');

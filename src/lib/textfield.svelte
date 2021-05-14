@@ -1,9 +1,9 @@
 <script lang="typescript">
-	export let id: string;
-	export let value: string = '';
-	export let placeholder: string = '';
-	export let type: string = 'text';
-	export let name: string;
+	export let id;
+	export let value = '';
+	export let placeholder = '';
+	export let type = 'text';
+	export let name = '';
 </script>
 
 <input {id} {type} {name} {placeholder} {value} on:change {...$$restProps} />

@@ -1,7 +1,7 @@
 <script lang="typescript">
-	export let disabled: boolean = false;
+	export let disabled = false;
 	export let size: 'large' | 'medium' | 'small' = 'medium';
-	export let border: boolean = true;
+	export let border = true;
 </script>
 
 <button

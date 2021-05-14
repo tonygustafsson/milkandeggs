@@ -1,8 +1,8 @@
 <script lang="typescript">
-	export let id: string = '';
-	export let name: string = '';
-	export let value: string = '';
-	export let checked: boolean = false;
+	export let id = '';
+	export let name = '';
+	export let value = '';
+	export let checked = false;
 
 	import IconCheckboxEmpty from '$lib/icons/checkbox-empty.svelte';
 	import IconCheckboxChecked from '$lib/icons/checkbox-checked.svelte';
