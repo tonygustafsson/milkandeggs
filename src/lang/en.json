@@ -1,0 +1,32 @@
+{
+	"list": {
+		"title": "List",
+		"all_done": "All done",
+		"clear_checked": "Clear checked",
+		"list_empty": "The list is empty."
+	},
+	"planning": {
+		"title": "Planning",
+		"clear": "Clear",
+		"add_item": "Add item",
+		"no_items_under_category": "There are no items under this category yet."
+	},
+	"settings": {
+		"title": "Settings",
+		"list": {
+			"title": "List",
+			"forget_list": "Forget list",
+			"no_list": "You do not have an active list connected. Please create a new one or connect an existing list.",
+			"create_new_list": "Create new list",
+			"or": "Or...",
+			"connect": "Connect"
+		},
+		"language": {
+			"title": "Language",
+			"current_language": "Your current language is"
+		}
+	},
+	"footer": {
+		"copyright": "This app is developed by"
+	}
+}

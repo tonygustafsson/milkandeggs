@@ -1,24 +1,9 @@
-<script context="module">
-	import { browser, dev } from '$app/env';
-
-	// we don't need any JS on this page, though we'll load
-	// it in dev so that we get hot module replacement...
-	export const hydrate = dev;
-
-	// ...but if the client-side router is already loaded
-	// (i.e. we came here from elsewhere in the app), use it
-	export const router = browser;
-
-	// since there's no dynamic data here, we can prerender
-	// it so that it gets served as a static asset in prod
-	export const prerender = true;
-</script>
-
 <script lang="typescript">
 	import { settings } from '../stores/settings';
 	import Button from '$lib/button.svelte';
 	import TextField from '$lib/textfield.svelte';
 	import IconRemove from '$lib/icons/remove.svelte';
+	import { _, locale } from 'svelte-i18n';
 
 	const generateGuid = () =>
 		Math.floor((1 + Math.random()) * 0x10000000000)
@@ -41,33 +26,53 @@
 		const listId = form.listid.value;
 		settings.set({ ...$settings, listId: listId });
 	};
+
+	const setLanguage = (language: string) => {
+		if (language !== 'se' && language !== 'en') {
+			return;
+		}
+
+		settings.set({ ...$settings, language: language });
+	};
 </script>
 
 <svelte:head>
-	<title>Inställningar</title>
+	<title>{$_('settings.title')}</title>
 </svelte:head>
 
 <div class="content">
-	<h3>Lista</h3>
+	<h3>{$_('settings.list.title')}</h3>
 
 	{#if $settings.listId}
 		<p>List ID: {$settings.listId}</p>
 
 		<Button on:click={forgetList}>
 			<IconRemove />
-			Glöm lista
+			{$_('settings.list.forget_list')}
 		</Button>
 	{:else}
-		<p>Du har ingen aktiv lista kopplad. Skapa en ny eller koppla en existerande lista.</p>
+		<p>{$_('settings.list.no_list')}</p>
 
-		<Button on:click={createList}>Skapa ny lista</Button>
+		<Button on:click={createList}>{$_('settings.list.create_new_list')}</Button>
 
-		<p>Eller...</p>
+		<p>{$_('settings.list.or')}</p>
 
 		<form on:submit={attachList}>
 			<TextField placeholder="1fc229933f" name="listid" id="listid" />
-			<Button type="submit">Koppla</Button>
+			<Button type="submit">{$_('settings.list.connect')}</Button>
 		</form>
+	{/if}
+
+	<h3>{$_('settings.language.title')}</h3>
+
+	<p>
+		{$_('settings.language.current_language')} <u>{$locale === 'en' ? 'English' : 'Swedish'}</u>.
+	</p>
+
+	{#if $locale === 'en'}
+		<a href="/settings" on:click={() => setLanguage('se')}>Switch to Swedish</a>
+	{:else}
+		<a href="/settings" on:click={() => setLanguage('en')}>Switch to English</a>
 	{/if}
 </div>
 

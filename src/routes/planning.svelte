@@ -1,19 +1,3 @@
-<script context="module">
-	import { browser, dev } from '$app/env';
-
-	// we don't need any JS on this page, though we'll load
-	// it in dev so that we get hot module replacement...
-	export const hydrate = dev;
-
-	// ...but if the client-side router is already loaded
-	// (i.e. we came here from elsewhere in the app), use it
-	export const router = browser;
-
-	// since there's no dynamic data here, we can prerender
-	// it so that it gets served as a static asset in prod
-	export const prerender = true;
-</script>
-
 <script lang="typescript">
 	import { onMount } from 'svelte';
 	import { settings } from '../stores/settings';
@@ -24,8 +8,7 @@
 	import PlanningItem from '$lib/planning/planningItem.svelte';
 	import AddItem from '$lib/planning/addItem.svelte';
 	import IconClear from '$lib/icons/clear.svelte';
-	import IconPlus from '$lib/icons/plus.svelte';
-	import Dialog from '$lib/dialog.svelte';
+	import { _ } from 'svelte-i18n';
 
 	onMount(() => {
 		if (!$settings.listId) {
@@ -44,12 +27,15 @@
 </script>
 
 <svelte:head>
-	<title>Planera</title>
+	<title>{$_('planning.title')}</title>
 </svelte:head>
 
 <div class="content">
 	<div class="button-panel">
-		<Button on:click={clear}><IconClear /> Töm</Button>
+		<Button on:click={clear}>
+			<IconClear />
+			{$_('planning.clear')}
+		</Button>
 
 		<AddItem />
 	</div>
@@ -63,7 +49,7 @@
 					<PlanningItem {item} />
 				{/each}
 			{:else}
-				<p><em>Inga varor under denna kategori ännu.</em></p>
+				<p><em>{$_('planning.no_items_under_category')}</em></p>
 			{/if}
 		{/each}
 	</div>

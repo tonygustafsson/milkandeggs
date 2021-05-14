@@ -46,6 +46,7 @@
 		<Textfield
 			disabled={!item.active}
 			name="comment"
+			id="comment-{item.id}"
 			value={item.comment || ''}
 			type="text"
 			placeholder="Kommentar"

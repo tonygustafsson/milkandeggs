@@ -7,6 +7,7 @@
 	import IconSave from '$lib/icons/save.svelte';
 	import IconPlus from '$lib/icons/plus.svelte';
 	import Dialog from '$lib/dialog.svelte';
+	import { _ } from 'svelte-i18n';
 
 	$: addItemDialogOpen = false;
 	let formEl;
@@ -65,16 +66,16 @@
 
 <Button on:click={openAddItemDialog}>
 	<IconPlus />
-	Lägg till vara
+	{$_('planning.add_item')}
 </Button>
 
 <Dialog
 	open={addItemDialogOpen}
 	onClose={() => (addItemDialogOpen = false)}
-	title={`Lägg till vara`}
+	title={$_('planning.add_item')}
 >
 	<form bind:this={formEl} on:submit={addItem}>
-		<Textfield type="text" name="name" />
+		<Textfield type="text" id="name" name="name" />
 
 		<Dropdown name="category">
 			{#each $categoriesArray as category}

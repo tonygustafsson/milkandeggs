@@ -1,7 +1,3 @@
-<script context="module">
-	export const prerender = true;
-</script>
-
 <script lang="typescript">
 	import { onMount } from 'svelte';
 	import { settings } from '../stores/settings';
@@ -12,6 +8,7 @@
 	import IconDone from '$lib/icons/done.svelte';
 	import IconRemove from '$lib/icons/remove.svelte';
 	import ListItem from '$lib/list/listItem.svelte';
+	import { _ } from 'svelte-i18n';
 
 	onMount(() => {
 		if (!$settings.listId) {
@@ -46,19 +43,19 @@
 </script>
 
 <svelte:head>
-	<title>Lista</title>
+	<title>{$_('list.title')}</title>
 </svelte:head>
 
 <section>
 	<div class="button-panel">
 		<Button on:click={allDone}>
 			<IconDone />
-			Allt klart
+			{$_('list.all_done')}
 		</Button>
 
 		<Button on:click={clearDone}>
 			<IconRemove />
-			Rensa markerade
+			{$_('list.clear_checked')}
 		</Button>
 	</div>
 
@@ -75,7 +72,9 @@
 	</div>
 
 	{#if $itemsArray.filter((x) => x.active).length === 0}
-		<p><em>Inköpslistan är tom.</em></p>
+		<p>
+			{$_('list.list_empty')}
+		</p>
 	{/if}
 </section>
 

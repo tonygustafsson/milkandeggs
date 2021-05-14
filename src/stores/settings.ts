@@ -4,7 +4,8 @@ import type Settings from '../types/settings';
 const localStorageKey = 'settings';
 
 let initSettings = {
-	listId: null
+	listId: null,
+	language: 'en'
 };
 
 if (typeof window !== 'undefined' && typeof window.localStorage === 'object') {

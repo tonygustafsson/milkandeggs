@@ -1,0 +1,32 @@
+{
+	"list": {
+		"title": "Listan",
+		"all_done": "Allt klart",
+		"clear_checked": "Rensa markerade",
+		"list_empty": "Inköpslistan är tom."
+	},
+	"planning": {
+		"title": "Planera",
+		"clear": "Töm",
+		"add_item": "Lägg till vara",
+		"no_items_under_category": "Inga varor under denna kategori ännu."
+	},
+	"settings": {
+		"title": "Inställningar",
+		"list": {
+			"title": "Lista",
+			"forget_list": "Glöm lista",
+			"no_list": "Du har ingen aktiv lista kopplad. Skapa en ny eller koppla en existerande lista.",
+			"create_new_list": "Skapa ny lista",
+			"or": "Eller...",
+			"connect": "Koppla"
+		},
+		"language": {
+			"title": "Språk",
+			"current_language": "Ditt nuvarande språk är"
+		}
+	},
+	"footer": {
+		"copyright": "Denna app utvecklas av"
+	}
+}

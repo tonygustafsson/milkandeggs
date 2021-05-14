@@ -2,21 +2,24 @@
 	import { settings } from '../stores/settings';
 	import { page } from '$app/stores';
 	import IconGear from '$lib/icons/gear.svelte';
+	import { _ } from 'svelte-i18n';
 </script>
 
 <header>
 	<div class="corner">
 		<h1 class="heading">
-			<a sveltekit:prefetch href="/"> ShopDrop </a>
+			<a sveltekit:prefetch href="/">ShopDrop</a>
 		</h1>
 	</div>
 
 	{#if $settings.listId}
 		<nav>
 			<ul>
-				<li class:active={$page.path === '/'}><a sveltekit:prefetch href="/">Listan</a></li>
+				<li class:active={$page.path === '/'}>
+					<a sveltekit:prefetch href="/">{$_('list.title')}</a>
+				</li>
 				<li class:active={$page.path === '/planning'}>
-					<a sveltekit:prefetch href="/planning">Planera</a>
+					<a sveltekit:prefetch href="/planning">{$_('planning.title')}</a>
 				</li>
 			</ul>
 		</nav>

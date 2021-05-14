@@ -1,6 +1,17 @@
+<script context="module">
+	import { waitLocale } from 'svelte-i18n';
+	import '../i18n';
+
+	export async function preload() {
+		// awaits for the loading of the 'en-US' and 'en' dictionaries
+		return waitLocale();
+	}
+</script>
+
 <script>
 	import Header from '$lib/header.svelte';
 	import '../app.css';
+	import { _ } from 'svelte-i18n';
 </script>
 
 <Header />
@@ -10,7 +21,9 @@
 </main>
 
 <footer>
-	<p>This app were created by <a href="https://www.satsuma.se">Satsuma Studios</a>.</p>
+	<p>
+		{$_('footer.copyright')} <a href="https://www.satsuma.se">Satsuma Studios</a>
+	</p>
 </footer>
 
 <style>
