@@ -36,6 +36,22 @@
 			"current_language": "Ditt nuvarande språk är"
 		}
 	},
+	"categories": {
+		"dairy": "Mejeri & Ägg",
+		"vegetables": "Frukt & Grönt",
+		"pantry": "Skafferi",
+		"meat": "Kött & Chark",
+		"fish": "Fisk & Skaldjur",
+		"frozen": "Frys",
+		"drinks": "Dryck",
+		"bread": "Bröd & Kakor",
+		"sweets": "Godis & Snacks",
+		"household": "Städ & Rengöring",
+		"hygiene": "Hygien & Skönhet",
+		"baby": "Barn",
+		"pets": "Husdjur",
+		"other": "Övrigt"
+	},
 	"footer": {
 		"copyright": "Denna app utvecklas av"
 	}

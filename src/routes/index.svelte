@@ -3,7 +3,7 @@
 	import { settings } from '../stores/settings';
 	import { goto } from '$app/navigation';
 	import { items, itemsArray } from '../stores/items';
-	import { categoriesArray } from '../stores/categories';
+	import { categories } from '../stores/categories';
 	import Button from '$lib/button.svelte';
 	import IconDone from '$lib/icons/done.svelte';
 	import IconRemove from '$lib/icons/remove.svelte';
@@ -60,7 +60,7 @@
 	</div>
 
 	<div class="list">
-		{#each $categoriesArray as category}
+		{#each Object.values($categories) as category}
 			{#if categoryHasItems(category.id)}
 				<h3>{category.name}</h3>
 

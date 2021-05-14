@@ -1,12 +1,20 @@
-import { writable, derived, Writable, Readable } from 'svelte/store';
+import { readable, Readable, get } from 'svelte/store';
 import categoriesData from '../data/categories.json';
 import type Category from '../types/category';
+import { _ } from 'svelte-i18n';
 
-type CategoryList = Record<string, Category>;
-type CategoryListArray = Array<Category>;
+type CategoryList = Array<Category>;
 
-export const categories: Writable<CategoryList> = writable(categoriesData);
+const $_ = get(_);
+const initCategories = [];
 
-export const categoriesArray: Readable<CategoryListArray> = derived(categories, ($categories) =>
-	Object.values($categories)
-);
+categoriesData.forEach((categoryId) => {
+	initCategories.push({
+		id: categoryId,
+		name: $_(`categories.${categoryId}`)
+	});
+});
+
+export const categories: Readable<CategoryList> = readable(null, (set) => {
+	set(initCategories);
+});

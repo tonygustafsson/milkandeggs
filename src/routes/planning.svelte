@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { settings } from '../stores/settings';
 	import { goto } from '$app/navigation';
-	import { categoriesArray } from '../stores/categories';
+	import { categories } from '../stores/categories';
 	import { items, itemsArray } from '../stores/items';
 	import Button from '$lib/button.svelte';
 	import PlanningItem from '$lib/planning/planningItem.svelte';
@@ -41,7 +41,7 @@
 	</div>
 
 	<div class="list">
-		{#each $categoriesArray as category}
+		{#each $categories as category}
 			<h3>{category.name}</h3>
 
 			{#if categoryHasItems(category.id)}

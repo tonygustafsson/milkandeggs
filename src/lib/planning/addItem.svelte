@@ -1,5 +1,5 @@
 <script lang="typescript">
-	import { categoriesArray } from '../../stores/categories';
+	import { categories } from '../../stores/categories';
 	import { items } from '../../stores/items';
 	import Textfield from '$lib/textfield.svelte';
 	import Button from '$lib/button.svelte';
@@ -61,6 +61,7 @@
 		items.set($items);
 
 		addItemDialogOpen = false;
+		form.name.value = '';
 	};
 </script>
 
@@ -78,7 +79,7 @@
 		<Textfield type="text" id="name" name="name" />
 
 		<Dropdown name="category">
-			{#each $categoriesArray as category}
+			{#each $categories as category}
 				<option value={category.id}>{category.name}</option>
 			{/each}
 		</Dropdown>

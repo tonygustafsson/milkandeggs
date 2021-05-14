@@ -36,6 +36,22 @@
 			"current_language": "Your current language is"
 		}
 	},
+	"categories": {
+		"dairy": "Dairy & Eggs",
+		"vegetables": "Fruit & Vegetables",
+		"pantry": "Pantry",
+		"meat": "Meat & Poultry",
+		"fish": "Fish & Seafood",
+		"frozen": "Frozen",
+		"drinks": "Drinks",
+		"bread": "Bakery & Cakes",
+		"sweets": "Sweets & Snacks",
+		"household": "Household & Cleaning",
+		"hygiene": "Hygiene & Beauty",
+		"baby": "Baby & Toddler",
+		"pets": "Pets",
+		"other": "Other"
+	},
 	"footer": {
 		"copyright": "This app is developed by"
 	}
