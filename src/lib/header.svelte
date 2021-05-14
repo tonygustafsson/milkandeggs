@@ -6,26 +6,28 @@
 </script>
 
 <header>
-	<div class="corner">
+	<div class="logo">
 		<h1 class="heading">
 			<a sveltekit:prefetch href="/">ShopDrop</a>
 		</h1>
 	</div>
 
-	{#if $settings.listId}
-		<nav>
-			<ul>
-				<li class:active={$page.path === '/'}>
-					<a sveltekit:prefetch href="/">{$_('list.title')}</a>
-				</li>
-				<li class:active={$page.path === '/planning'}>
-					<a sveltekit:prefetch href="/planning">{$_('planning.title')}</a>
-				</li>
-			</ul>
-		</nav>
-	{/if}
+	<div class="main-nav">
+		{#if $settings.listId}
+			<nav>
+				<ul>
+					<li class:active={$page.path === '/'}>
+						<a sveltekit:prefetch href="/">{$_('list.title')}</a>
+					</li>
+					<li class:active={$page.path === '/planning'}>
+						<a sveltekit:prefetch href="/planning">{$_('planning.title')}</a>
+					</li>
+				</ul>
+			</nav>
+		{/if}
+	</div>
 
-	<div class="corner">
+	<div class="tool-bar">
 		<nav>
 			<ul>
 				<li class:active={$page.path === '/settings'}>
@@ -41,9 +43,30 @@
 <style>
 	header {
 		display: flex;
-		flex-wrap: wrap;
+		flex-wrap: nowrap;
 		justify-content: space-between;
 		background: #000;
+	}
+
+	.logo {
+		flex: 2 0 100px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.main-nav {
+		flex: 10 0 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.tool-bar {
+		flex: 1 0 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	h1 a {
@@ -58,18 +81,6 @@
 	@media (max-width: 600px) {
 		header {
 			flex: 1 0 0;
-		}
-	}
-
-	.corner {
-		width: 3em;
-		height: 3em;
-	}
-
-	@media (max-width: 600px) {
-		.corner {
-			flex: 1 0 0;
-			width: 100%;
 		}
 	}
 
@@ -118,7 +129,7 @@
 		width: 0;
 		height: 0;
 		position: absolute;
-		top: 0;
+		top: -5px;
 		left: calc(50% - var(--size));
 		border: var(--size) solid transparent;
 		border-top: var(--size) solid var(--accent-color);
@@ -128,7 +139,7 @@
 		display: flex;
 		height: 100%;
 		align-items: center;
-		padding: 0 1em;
+		padding: 0 0.75em;
 		color: #fff;
 		font-weight: 700;
 		text-transform: uppercase;

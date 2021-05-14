@@ -41,18 +41,13 @@
 	footer {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding: 40px;
+		justify-content: flex-end;
+		align-items: flex-end;
+		padding-right: 1em;
+		font-size: 0.9rem;
 	}
 
 	footer a {
 		font-weight: bold;
-	}
-
-	@media (min-width: 480px) {
-		footer {
-			padding: 40px 0;
-		}
 	}
 </style>
