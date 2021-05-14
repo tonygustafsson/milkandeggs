@@ -1,4 +1,11 @@
 {
+	"common": {
+		"save": "Save",
+		"abort": "Abort",
+		"clear": "Clear",
+		"yes": "Yes",
+		"no": "No"
+	},
 	"list": {
 		"title": "List",
 		"all_done": "All done",
@@ -9,7 +16,10 @@
 		"title": "Planning",
 		"clear": "Clear",
 		"add_item": "Add item",
-		"no_items_under_category": "There are no items under this category yet."
+		"no_items_under_category": "There are no items under this category yet.",
+		"comment_placeholder": "Comment",
+		"comment": "Comment",
+		"do_you_want_to_remove": "Do you want to remove"
 	},
 	"settings": {
 		"title": "Settings",

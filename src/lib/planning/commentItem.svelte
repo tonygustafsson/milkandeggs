@@ -6,6 +6,7 @@
 	import IconComment from '$lib/icons/comment.svelte';
 	import IconSave from '$lib/icons/save.svelte';
 	import Textfield from '$lib/textfield.svelte';
+	import { _ } from 'svelte-i18n';
 
 	export let item: Item;
 	let formEl;
@@ -40,7 +41,7 @@
 <Dialog
 	open={commentDialogOpen}
 	onClose={() => (commentDialogOpen = false)}
-	title={`Kommentera ${item.name}`}
+	title={`${$_('planning.comment')} ${item.name}`}
 >
 	<form bind:this={formEl} on:submit={saveComment}>
 		<Textfield
@@ -49,12 +50,12 @@
 			id="comment-{item.id}"
 			value={item.comment || ''}
 			type="text"
-			placeholder="Kommentar"
+			placeholder={$_('planning.comment_placeholder')}
 		/>
 
 		<Button type="submit">
 			<IconSave />
-			Spara
+			{$_('common.save')}
 		</Button>
 	</form>
 </Dialog>

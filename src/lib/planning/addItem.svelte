@@ -85,7 +85,7 @@
 
 		<Button type="submit">
 			<IconSave />
-			Spara
+			{$_('common.save')}
 		</Button>
 	</form>
 </Dialog>

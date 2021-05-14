@@ -5,6 +5,7 @@
 	import Dialog from '$lib/dialog.svelte';
 	import IconRemove from '$lib/icons/remove.svelte';
 	import IconDone from '$lib/icons/done.svelte';
+	import { _ } from 'svelte-i18n';
 
 	export let item: Item;
 
@@ -31,17 +32,17 @@
 <Dialog
 	open={removeDialogOpen}
 	onClose={() => (removeDialogOpen = false)}
-	title={`Vill du radera ${item.name}?`}
+	title={`${$_('planning.do_you_want_to_remove')} ${item.name}?`}
 >
 	<form on:submit={(e) => deleteItem(item.id, e)}>
 		<Button type="submit">
 			<IconDone />
-			Ja
+			{$_('common.yes')}
 		</Button>
 
 		<Button on:click={(e) => (e.preventDefault(), (removeDialogOpen = false))}>
 			<IconRemove />
-			Nej
+			{$_('common.no')}
 		</Button>
 	</form>
 </Dialog>

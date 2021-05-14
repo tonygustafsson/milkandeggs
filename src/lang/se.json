@@ -1,4 +1,11 @@
 {
+	"common": {
+		"save": "Spara",
+		"abort": "Avbryt",
+		"clear": "Rensa",
+		"yes": "Ja",
+		"no": "Nej"
+	},
 	"list": {
 		"title": "Listan",
 		"all_done": "Allt klart",
@@ -9,7 +16,10 @@
 		"title": "Planera",
 		"clear": "Töm",
 		"add_item": "Lägg till vara",
-		"no_items_under_category": "Inga varor under denna kategori ännu."
+		"no_items_under_category": "Inga varor under denna kategori ännu.",
+		"comment_placeholder": "Kommentar",
+		"comment": "Kommentera",
+		"do_you_want_to_remove": "Vill du radera"
 	},
 	"settings": {
 		"title": "Inställningar",
