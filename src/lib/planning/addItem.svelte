@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script lang="ts">
 	import { categories } from '../../stores/categories';
 	import { items } from '../../stores/items';
 	import Textfield from '$lib/textfield.svelte';

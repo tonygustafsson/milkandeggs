@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script lang="ts">
 	import { onMount } from 'svelte';
 	import Button from '$lib/button.svelte';
 	import IconClose from '$lib/icons/close.svelte';

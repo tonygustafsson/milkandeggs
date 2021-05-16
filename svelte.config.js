@@ -12,9 +12,12 @@ const config = {
 		target: '#svelte',
 		adapter: adapter({
 			pages: 'build',
-			assets: 'build',
-			fallback: 'index.html'
-		})
+			assets: 'build'
+		}),
+		paths: {
+			assets: '/projects/shopdrop',
+			base: '/projects/shopdrop'
+		}
 	}
 };
 

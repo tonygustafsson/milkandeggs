@@ -1,4 +1,4 @@
-<script context="module">
+<script context="module" lang="ts">
 	import { waitLocale } from 'svelte-i18n';
 	import '../i18n';
 
@@ -8,7 +8,7 @@
 	}
 </script>
 
-<script>
+<script lang="ts">
 	import Header from '$lib/header.svelte';
 	import '../app.css';
 	import { _ } from 'svelte-i18n';

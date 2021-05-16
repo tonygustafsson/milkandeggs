@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script lang="ts">
 	import { settings } from '../stores/settings';
 	import Button from '$lib/button.svelte';
 	import TextField from '$lib/textfield.svelte';
@@ -38,6 +38,7 @@
 
 <svelte:head>
 	<title>{$_('settings.title')}</title>
+	<base href={import.meta.env.VITE_BASE.toString()} />
 </svelte:head>
 
 <div class="content">

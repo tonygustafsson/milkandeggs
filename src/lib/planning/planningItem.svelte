@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script lang="ts">
 	import Button from '$lib/button.svelte';
 	import { items, itemsArray } from '../../stores/items';
 	import type Item from '../../types/item';

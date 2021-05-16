@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script lang="ts">
 	import { onMount } from 'svelte';
 	import { settings } from '../stores/settings';
 	import { goto } from '$app/navigation';
@@ -28,6 +28,7 @@
 
 <svelte:head>
 	<title>{$_('planning.title')}</title>
+	<base href={import.meta.env.VITE_BASE.toString()} />
 </svelte:head>
 
 <div class="content">

@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script lang="ts">
 	export let id;
 	export let value = '';
 	export let placeholder = '';

@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script lang="ts">
 	import Checkbox from '$lib/checkbox.svelte';
 	import type Item from '../../types/item';
 	import { items } from '../../stores/items';

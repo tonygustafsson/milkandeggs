@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script lang="ts">
 	export let disabled = false;
 	export let size: 'large' | 'medium' | 'small' = 'medium';
 	export let border = true;
