@@ -79,4 +79,14 @@
 </div>
 
 <style>
+	.content {
+		width: 600px;
+		margin: 0 auto;
+	}
+
+	@media (max-width: 600px) {
+		.content {
+			width: auto;
+		}
+	}
 </style>
