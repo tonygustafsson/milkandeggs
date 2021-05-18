@@ -16,8 +16,8 @@
 		{#if $settings.listId}
 			<nav>
 				<ul>
-					<li class:active={$page.path === './'}>
-						<a sveltekit:prefetch href=".">{$_('list.title')}</a>
+					<li class:active={$page.path === '/'}>
+						<a sveltekit:prefetch href="./">{$_('list.title')}</a>
 					</li>
 					<li class:active={$page.path === '/planning'}>
 						<a sveltekit:prefetch href="./planning">{$_('planning.title')}</a>
@@ -63,10 +63,21 @@
 	}
 
 	.tool-bar {
-		flex: 1 0 50px;
+		flex: 1 0 30px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+
+	@media (max-width: 600px) {
+		header {
+			flex-wrap: wrap;
+		}
+
+		.logo {
+			width: 100%;
+			flex-basis: 100%;
+		}
 	}
 
 	h1 a {
@@ -78,31 +89,19 @@
 		text-decoration: none;
 	}
 
-	@media (max-width: 600px) {
-		header {
-			flex: 1 0 0;
-		}
-	}
-
 	.heading {
 		font-size: 2rem;
 		margin: 12px;
 		color: #fff;
 	}
 
-	@media (max-width: 600px) {
-		.heading {
-			font-size: 1.25rem;
-		}
-
-		nav {
-			width: 100%;
-		}
-	}
-
 	nav {
 		display: flex;
 		justify-content: center;
+	}
+
+	.tool-bar nav {
+		justify-content: flex-end;
 	}
 
 	ul {
@@ -124,7 +123,7 @@
 	}
 
 	li.active::before {
-		--size: 6px;
+		--size: 8px;
 		content: '';
 		width: 0;
 		height: 0;
@@ -150,5 +149,24 @@
 
 	a:hover {
 		color: var(--accent-color);
+	}
+
+	@media (max-width: 600px) {
+		.heading {
+			font-size: 1.25rem;
+		}
+
+		nav {
+			width: 100%;
+			justify-content: flex-start;
+		}
+
+		li.active::before {
+			top: auto;
+			bottom: 0;
+			left: calc(50% - var(--size));
+			border: var(--size) solid transparent;
+			border-bottom: var(--size) solid var(--accent-color);
+		}
 	}
 </style>

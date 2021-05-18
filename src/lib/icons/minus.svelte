@@ -36,4 +36,11 @@
 		height: 16px;
 		vertical-align: middle;
 	}
+
+	@media (max-width: 600px) {
+		svg {
+			width: 20px;
+			height: 20px;
+		}
+	}
 </style>

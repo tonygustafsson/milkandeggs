@@ -42,36 +42,44 @@
 		<AddItem />
 	</div>
 
-	<div class="list">
-		{#each $categories as category}
-			<h3>{$_(`categories.${category.id}`)}</h3>
+	{#each $categories as category}
+		<h3>{$_(`categories.${category.id}`)}</h3>
 
-			{#if categoryHasItems(category.id)}
+		{#if categoryHasItems(category.id)}
+			<table>
 				{#each getMatchingCategoryItems(category.id) as item}
 					<PlanningItem {item} />
 				{/each}
-			{:else}
-				<p><em>{$_('planning.no_items_under_category')}</em></p>
-			{/if}
-		{/each}
-	</div>
+			</table>
+		{:else}
+			<p>
+				<em>{$_('planning.no_items_under_category')}</em>
+			</p>
+		{/if}
+	{/each}
 </div>
 
 <style>
+	table {
+		border-spacing: 0;
+		width: 100%;
+		margin: 0 auto;
+	}
 	.button-panel {
 		text-align: right;
 		width: 100%;
 		margin-bottom: 2em;
 	}
-
-	.list {
-		width: 100%;
+	.content {
+		width: 600px;
 		margin: 0 auto;
 	}
-
-	@media (min-width: 600px) {
-		.list {
-			width: 50%;
+	@media (max-width: 600px) {
+		table {
+			table-layout: fixed;
+		}
+		.content {
+			width: auto;
 		}
 	}
 </style>

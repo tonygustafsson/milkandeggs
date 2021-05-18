@@ -45,8 +45,8 @@
 	};
 </script>
 
-<div class="root">
-	<div class="left">
+<tr class="root">
+	<td class="left">
 		<Checkbox
 			on:change={toggleActivation}
 			name={item.name}
@@ -57,9 +57,9 @@
 		<label for={item.id}>
 			{item.name}
 		</label>
-	</div>
+	</td>
 
-	<div class="right">
+	<td class="right">
 		<div class="action-bar" class:action-bar-disabled={!$items[item.id].active}>
 			<Button
 				border={false}
@@ -86,34 +86,28 @@
 		</div>
 
 		<RemoveItem {item} />
-	</div>
-</div>
+	</td>
+</tr>
 
 <style>
-	.root {
-		display: flex;
-		align-items: center;
+	tr {
 		width: 100%;
-		min-height: 24px;
 		margin-bottom: 0.5em;
 	}
-	.root:nth-child(2n + 1) {
+	tr:nth-child(2n + 1) {
 		background-color: #fafafa;
 	}
-	.left {
-		flex: 1.8 0 0;
+	td {
+		height: 34px;
 	}
 	.right {
-		flex: 1 0 0;
 		text-align: right;
 	}
 	.quantity {
 		vertical-align: middle;
 	}
 	label {
-		min-width: 13em;
 		display: inline-block;
-		margin-top: 2px;
 		vertical-align: text-top;
 		user-select: none;
 	}
@@ -126,9 +120,10 @@
 		user-select: none;
 	}
 
-	@media (min-width: 600px) {
-		.left {
-			flex: 2 0 0;
+	@media (max-width: 600px) {
+		label {
+			max-width: 7em;
+			word-break: break-all;
 		}
 	}
 </style>
