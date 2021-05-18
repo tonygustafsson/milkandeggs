@@ -12,8 +12,8 @@
 	};
 </script>
 
-<div class="root">
-	<div>
+<tr>
+	<td>
 		<Checkbox
 			on:change={checkItem}
 			name={item.name}
@@ -26,31 +26,28 @@
 				{item.quantity} st
 			{/if}
 		</label>
-	</div>
+	</td>
 
 	{#if item.comment}
-		<div>
+		<td>
 			<p class="comment">{item.comment}</p>
-		</div>
+		</td>
+	{:else}
+		<td />
 	{/if}
-</div>
+</tr>
 
 <style>
-	.root {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		width: 100%;
-		min-height: 24px;
+	tr {
 		margin-bottom: 0.5em;
 	}
-	.root:nth-child(2n + 1) {
+	tr:nth-child(2n + 1) {
 		background-color: #fafafa;
 	}
-	.root > div {
-		flex: 1 0 100%;
-		width: 100%;
+	td {
+		height: 34px;
 	}
+
 	.done {
 		text-decoration: line-through;
 	}
@@ -63,9 +60,13 @@
 	.comment {
 		font-size: 12px;
 		color: #666;
-		text-indent: 3em;
-		margin-top: 4px;
-		margin-bottom: 0;
 		user-select: none;
+	}
+
+	@media (max-width: 600px) {
+		label {
+			max-width: 7em;
+			word-break: break-all;
+		}
 	}
 </style>

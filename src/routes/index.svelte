@@ -48,7 +48,7 @@
 	<base href={basePath} />
 </svelte:head>
 
-<section>
+<div class="content">
 	<div class="button-panel">
 		<Button on:click={allDone}>
 			<IconDone />
@@ -61,24 +61,24 @@
 		</Button>
 	</div>
 
-	<div class="list">
-		{#each Object.values($categories) as category}
-			{#if categoryHasItems(category.id)}
-				<h3>{$_(`categories.${category.id}`)}</h3>
+	{#each Object.values($categories) as category}
+		{#if categoryHasItems(category.id)}
+			<h3>{$_(`categories.${category.id}`)}</h3>
 
+			<table>
 				{#each getMatchingCategoryItems(category.id) as item}
 					<ListItem {item} />
 				{/each}
-			{/if}
-		{/each}
-	</div>
+			</table>
+		{/if}
+	{/each}
 
 	{#if $itemsArray.filter((x) => x.active).length === 0}
 		<p>
 			{$_('list.list_empty')}
 		</p>
 	{/if}
-</section>
+</div>
 
 <style>
 	.button-panel {
@@ -86,13 +86,20 @@
 		width: 100%;
 		margin-bottom: 2em;
 	}
-	.list {
+	table {
 		width: 100%;
 		margin: 0 auto;
+		table-layout: fixed;
+		border-spacing: 0;
 	}
+	.content {
+		width: auto;
+		margin: 0 auto;
+	}
+
 	@media (min-width: 600px) {
-		.list {
-			width: 50%;
+		.content {
+			width: 600px;
 		}
 	}
 </style>
