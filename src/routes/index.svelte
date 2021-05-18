@@ -9,10 +9,11 @@
 	import IconRemove from '$lib/icons/remove.svelte';
 	import ListItem from '$lib/list/listItem.svelte';
 	import { _ } from 'svelte-i18n';
+	import { base as basePath } from '$app/paths';
 
 	onMount(() => {
 		if (!$settings.listId) {
-			goto('/settings');
+			goto('settings');
 		}
 	});
 
@@ -44,7 +45,7 @@
 
 <svelte:head>
 	<title>{$_('list.title')}</title>
-	<base href={import.meta.env.VITE_BASE.toString()} />
+	<base href={basePath} />
 </svelte:head>
 
 <section>

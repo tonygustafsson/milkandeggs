@@ -8,7 +8,7 @@
 <header>
 	<div class="logo">
 		<h1 class="heading">
-			<a sveltekit:prefetch href=".">ShopDrop</a>
+			<a sveltekit:prefetch href="./">ShopDrop</a>
 		</h1>
 	</div>
 
@@ -16,11 +16,11 @@
 		{#if $settings.listId}
 			<nav>
 				<ul>
-					<li class:active={$page.path === '/'}>
+					<li class:active={$page.path === './'}>
 						<a sveltekit:prefetch href=".">{$_('list.title')}</a>
 					</li>
 					<li class:active={$page.path === '/planning'}>
-						<a sveltekit:prefetch href="planning">{$_('planning.title')}</a>
+						<a sveltekit:prefetch href="./planning">{$_('planning.title')}</a>
 					</li>
 				</ul>
 			</nav>
@@ -31,7 +31,7 @@
 		<nav>
 			<ul>
 				<li class:active={$page.path === '/settings'}>
-					<a sveltekit:prefetch href="settings">
+					<a sveltekit:prefetch href="./settings">
 						<IconGear />
 					</a>
 				</li>

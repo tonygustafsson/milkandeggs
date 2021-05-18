@@ -4,6 +4,7 @@
 	import TextField from '$lib/textfield.svelte';
 	import IconRemove from '$lib/icons/remove.svelte';
 	import { _, locale } from 'svelte-i18n';
+	import { base as basePath } from '$app/paths';
 
 	const generateGuid = () =>
 		Math.floor((1 + Math.random()) * 0x10000000000)
@@ -38,7 +39,7 @@
 
 <svelte:head>
 	<title>{$_('settings.title')}</title>
-	<base href={import.meta.env.VITE_BASE.toString()} />
+	<base href={basePath} />
 </svelte:head>
 
 <div class="content">
