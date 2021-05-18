@@ -23,7 +23,7 @@ let listId = null;
 export const items: Writable<ItemList> = writable({});
 
 if (browser) {
-	Promise.all([import('firebase/app'), import('firebase/database'), import('firebase/auth')])
+	Promise.all([import('@firebase/app'), import('@firebase/database'), import('@firebase/auth')])
 		.then((x) => x[0].default)
 		.then((firebase) => {
 			if (!firebase.apps.length) {
@@ -64,7 +64,7 @@ if (browser) {
 			});
 		});
 } else {
-	Promise.all([import('@firebase/app'), import('@firebase/database'), import('@firebase/auth')])
+	Promise.all([import('firebase/app'), import('firebase/database'), import('firebase/auth')])
 		.then((x) => x[0].default)
 		.then((firebase) => {
 			if (!firebase.apps.length) {
