@@ -1,5 +1,6 @@
 {
-	"name": "shopdrop",
+	"name": "milkandeggs",
+	"displayName": "Milk & Eggs",
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "svelte-kit dev --port 3001",
