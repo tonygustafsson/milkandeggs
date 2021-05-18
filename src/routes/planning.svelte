@@ -44,7 +44,7 @@
 
 	<div class="list">
 		{#each $categories as category}
-			<h3>{category.name}</h3>
+			<h3>{$_(`categories.${category.id}`)}</h3>
 
 			{#if categoryHasItems(category.id)}
 				{#each getMatchingCategoryItems(category.id) as item}

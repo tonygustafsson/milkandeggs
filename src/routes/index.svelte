@@ -64,7 +64,7 @@
 	<div class="list">
 		{#each Object.values($categories) as category}
 			{#if categoryHasItems(category.id)}
-				<h3>{category.name}</h3>
+				<h3>{$_(`categories.${category.id}`)}</h3>
 
 				{#each getMatchingCategoryItems(category.id) as item}
 					<ListItem {item} />

@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	import { waitLocale } from 'svelte-i18n';
+	import { waitLocale, _, isLoading } from 'svelte-i18n';
 	import '../i18n';
 
 	export async function preload() {
@@ -11,20 +11,23 @@
 <script lang="ts">
 	import Header from '$lib/header.svelte';
 	import '../app.css';
-	import { _ } from 'svelte-i18n';
 </script>
 
-<Header />
+{#if $isLoading}
+	<p>Loading...</p>
+{:else}
+	<Header />
 
-<main>
-	<slot />
-</main>
+	<main>
+		<slot />
+	</main>
 
-<footer>
-	<p>
-		{$_('footer.copyright')} <a href="https://www.satsuma.se">Satsuma Studios</a>
-	</p>
-</footer>
+	<footer>
+		<p>
+			{$_('footer.copyright')} <a href="https://www.satsuma.se">Satsuma Studios</a>
+		</p>
+	</footer>
+{/if}
 
 <style>
 	main {
