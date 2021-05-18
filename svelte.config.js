@@ -18,7 +18,7 @@ const config = {
 			assets: 'build'
 		}),
 		paths: {
-			base: dev ? '' : '/projects/shopdrop/'
+			base: dev ? '' : ''
 		}
 	}
 };

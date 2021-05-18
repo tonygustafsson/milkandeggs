@@ -13,7 +13,7 @@
 
 	onMount(() => {
 		if (!$settings.listId) {
-			goto('settings');
+			goto('/settings');
 		}
 	});
 
