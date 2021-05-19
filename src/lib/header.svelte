@@ -131,7 +131,7 @@
 		top: -5px;
 		left: calc(50% - var(--size));
 		border: var(--size) solid transparent;
-		border-top: var(--size) solid var(--accent-color);
+		border-top: var(--size) solid var(--primary-color);
 	}
 
 	nav a {
@@ -148,7 +148,7 @@
 	}
 
 	a:hover {
-		color: var(--accent-color);
+		color: var(--primary-color);
 	}
 
 	@media (max-width: 600px) {
@@ -166,7 +166,7 @@
 			bottom: 0;
 			left: calc(50% - var(--size));
 			border: var(--size) solid transparent;
-			border-bottom: var(--size) solid var(--accent-color);
+			border-bottom: var(--size) solid var(--primary-color);
 		}
 	}
 </style>

@@ -3,7 +3,7 @@
 </script>
 
 <svg
-	fill={active ? 'var(--accent-color)' : 'black'}
+	fill={active ? 'var(--primary-color)' : 'black'}
 	height="16px"
 	viewBox="-21 -47 682.66669 682"
 	width="16px"
