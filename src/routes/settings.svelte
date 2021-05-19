@@ -5,6 +5,7 @@
 	import IconRemove from '$lib/icons/remove.svelte';
 	import { _, locale } from 'svelte-i18n';
 	import { base as basePath } from '$app/paths';
+	import { dev } from '$app/env';
 
 	const generateGuid = () =>
 		Math.floor((1 + Math.random()) * 0x10000000000)
@@ -34,6 +35,20 @@
 		}
 
 		settings.set({ ...$settings, language: language });
+	};
+
+	$: shareUrl = dev
+		? `http://localhost:3001/share/${$settings.listId}/`
+		: `https://www.milkandeggs.app/share/${$settings.listId}/`;
+
+	const share = () => {
+		if (!navigator.share) {
+			return alert('Not supported in your browser, please just send the link instead.');
+		}
+
+		navigator.share({
+			text: `${$_('settings.share.send_message')} ${shareUrl}`
+		});
 	};
 </script>
 
@@ -75,6 +90,24 @@
 		<a href="/settings" on:click={() => setLanguage('se')}>Switch to Swedish</a>
 	{:else}
 		<a href="/settings" on:click={() => setLanguage('en')}>Switch to English</a>
+	{/if}
+
+	{#if $settings.listId}
+		<h3>{$_('settings.share.title')}</h3>
+
+		<p>
+			{$_('settings.share.information')}<br />
+
+			<a href={shareUrl}>
+				{shareUrl}
+			</a>
+		</p>
+
+		{#if navigator.share}
+			<Button on:click={share}>
+				{$_('settings.share.cta')}
+			</Button>
+		{/if}
 	{/if}
 </div>
 

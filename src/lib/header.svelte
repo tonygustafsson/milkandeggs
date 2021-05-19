@@ -8,7 +8,7 @@
 <header>
 	<div class="logo">
 		<h1 class="heading">
-			<a href="./">Milk &amp; Eggs</a>
+			<a href="/">Milk &amp; Eggs</a>
 		</h1>
 	</div>
 

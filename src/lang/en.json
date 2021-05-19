@@ -34,7 +34,21 @@
 		"language": {
 			"title": "Language",
 			"current_language": "Your current language is"
+		},
+		"share": {
+			"title": "Share your list",
+			"information": "You can share your list with a partner or a friend by sending them the following URL, or press the share button if available.",
+			"send_message": "Someone want's to share their shopping list with you on Milk & Eggs. Click the link to start sharing!",
+			"cta": "Share"
 		}
+	},
+	"share": {
+		"title": "Sharing is caring",
+		"information": "Someone has offered to share a list with you.",
+		"warning_title": "WARNING!",
+		"warning_message": "You already have an existing list. You can only use one list at a time. Are you sure you want to replace the list with this shared list?",
+		"deny_back": "No, go back",
+		"deny_settings": "No, I'll create my own list instead"
 	},
 	"categories": {
 		"dairy": "Dairy & Eggs",

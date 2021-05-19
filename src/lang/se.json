@@ -34,7 +34,21 @@
 		"language": {
 			"title": "Språk",
 			"current_language": "Ditt nuvarande språk är"
+		},
+		"share": {
+			"title": "Dela listan",
+			"information": "Du kan dela listan med en partner eller en vän genom att skicka dem nedanstående länk, eller klicka på knappen om den är tillgänglig.",
+			"send_message": "Någon vill dela sin shoppinglista med dig hos Milk & Eggs. Klicka på länken för att börja dela!",
+			"cta": "Dela"
 		}
+	},
+	"share": {
+		"title": "Delad glädje",
+		"information": "Någon vill dela sin lista med dig.",
+		"warning_title": "VARNING!",
+		"warning_message": "Du har redan en existerande lista. Du kan bara använda en lista åt gången. Är du säker på att du vill ersätta din nuvarande lista med den här delade listan?",
+		"deny_back": "Nej, gå tillbaka",
+		"deny_settings": "Nej, jag skapar min egna lista i stället"
 	},
 	"categories": {
 		"dairy": "Mejeri & Ägg",
