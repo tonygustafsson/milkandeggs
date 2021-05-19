@@ -51,7 +51,7 @@
 		text-align: left;
 		padding: 0;
 		z-index: 10;
-		transform: translateY(100vw);
+		transform: translateY(150vw);
 		transition: transform 200ms;
 	}
 

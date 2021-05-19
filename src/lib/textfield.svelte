@@ -14,10 +14,17 @@
 		background-color: #fff;
 		font-size: 1rem;
 		border: 1px #999 solid;
+		box-sizing: border-box;
+		margin-bottom: 8px;
 	}
-
 	input[disabled] {
 		background-color: #eee;
 		cursor: not-allowed;
+	}
+
+	@media (max-width: 600px) {
+		input {
+			width: 100%;
+		}
 	}
 </style>
