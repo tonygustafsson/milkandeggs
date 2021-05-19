@@ -11,16 +11,16 @@
 
 	$: removeDialogOpen = false;
 
-	const openRemoveDialog = () => {
-		removeDialogOpen = true;
-	};
-
 	const deleteItem = (itemId: string, e: any) => {
 		e.preventDefault();
 
 		delete $items[itemId];
 		items.set($items);
 
+		removeDialogOpen = false;
+	};
+
+	const closeDialog = () => {
 		removeDialogOpen = false;
 	};
 </script>
@@ -40,7 +40,7 @@
 			{$_('common.yes')}
 		</Button>
 
-		<Button on:click={(e) => (e.preventDefault(), (removeDialogOpen = false))}>
+		<Button type="button" on:click={closeDialog}>
 			<IconRemove />
 			{$_('common.no')}
 		</Button>

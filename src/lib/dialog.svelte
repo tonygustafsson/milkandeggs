@@ -18,11 +18,11 @@
 		width = size.width;
 		height = size.height;
 
-		positionStyle = `top: calc(50vh - ${height}px);`;
+		positionStyle = `top: calc(50vh - ${height / 2}px); left: calc(50vw - ${width / 2}px);`;
 	});
 </script>
 
-<dialog {open} bind:this={dialog} style={positionStyle}>
+<div class="root" class:open bind:this={dialog} style={positionStyle}>
 	<div class="modal-title">
 		<h4>{title}</h4>
 	</div>
@@ -36,25 +36,27 @@
 			<IconClose />
 		</Button>
 	</div>
-</dialog>
+</div>
 
 <style>
-	dialog {
+	.root {
 		position: fixed;
+		display: block;
 		top: 50vh;
+		left: 0;
 		background-color: #fff;
-		border: none;
 		box-shadow: 0 0 40px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 0, 0, 0.25);
 		max-width: 90vw;
 		box-sizing: border-box;
 		text-align: left;
 		padding: 0;
 		z-index: 10;
-		display: none;
+		transform: translateY(100vw);
+		transition: transform 200ms;
 	}
 
-	dialog[open] {
-		display: block;
+	.root.open {
+		transform: translateY(0);
 	}
 
 	.modal-body {
