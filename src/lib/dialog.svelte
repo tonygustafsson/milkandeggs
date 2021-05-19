@@ -50,10 +50,11 @@
 		text-align: left;
 		padding: 0;
 		z-index: 10;
+		display: none;
 	}
 
 	dialog[open] {
-		animation: appear 0.15s cubic-bezier(0, 1.8, 1, 1.8);
+		display: block;
 	}
 
 	.modal-body {
