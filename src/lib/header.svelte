@@ -49,9 +49,9 @@
 	}
 
 	.logo {
-		flex: 2 0 100px;
+		flex: 2 0 140px;
 		display: flex;
-		justify-content: center;
+		justify-content: flex-start;
 		align-items: center;
 	}
 
@@ -60,6 +60,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		font-family: var(--heading-font);
 	}
 
 	.tool-bar {
@@ -67,17 +68,6 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-	}
-
-	@media (max-width: 600px) {
-		header {
-			flex-wrap: wrap;
-		}
-
-		.logo {
-			width: 100%;
-			flex-basis: 100%;
-		}
 	}
 
 	h1 a {
@@ -152,8 +142,14 @@
 	}
 
 	@media (max-width: 600px) {
-		.heading {
-			font-size: 1.25rem;
+		header {
+			flex-wrap: wrap;
+		}
+
+		.logo {
+			width: 100%;
+			flex-basis: 100%;
+			font-size: 1.5rem;
 		}
 
 		nav {
