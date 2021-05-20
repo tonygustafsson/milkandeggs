@@ -37,9 +37,7 @@
 		settings.set({ ...$settings, language: language });
 	};
 
-	$: shareUrl = dev
-		? `http://localhost:3001/share/${$settings.listId}/`
-		: `https://www.milkandeggs.app/share/${$settings.listId}/`;
+	const baseUrl = dev ? `http://localhost:3001/` : `https://www.milkandeggs.app/share/`;
 
 	const share = () => {
 		if (!navigator.share) {
@@ -47,7 +45,7 @@
 		}
 
 		navigator.share({
-			text: `${$_('settings.share.send_message')} ${shareUrl}`
+			text: `${$_('settings.share.send_message')} ${baseUrl}share/${$settings.listId}/`
 		});
 	};
 </script>
@@ -98,8 +96,8 @@
 		<p>
 			{$_('settings.share.information')}<br />
 
-			<a href={shareUrl}>
-				{shareUrl}
+			<a href="{baseUrl}share/{$settings.listId}">
+				{baseUrl}share/{$settings.listId}/
 			</a>
 		</p>
 
