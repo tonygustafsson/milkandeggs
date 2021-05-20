@@ -37,7 +37,7 @@
 		settings.set({ ...$settings, language: language });
 	};
 
-	const baseUrl = dev ? `http://localhost:3001/` : `https://www.milkandeggs.app/share/`;
+	const baseUrl = dev ? `http://localhost:3001/` : `https://www.milkandeggs.app/`;
 
 	const share = () => {
 		if (!navigator.share) {

@@ -15,11 +15,13 @@ const config = {
 		target: '#svelte',
 		adapter: adapter({
 			pages: 'build',
-			assets: 'build'
+			assets: 'build',
+			fallback: 'index.html'
 		}),
 		paths: {
 			base: dev ? '' : ''
-		}
+		},
+		ssr: false
 	}
 };
 

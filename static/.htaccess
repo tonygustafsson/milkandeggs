@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+	Options +FollowSymLinks -MultiViews
+    RewriteEngine On
+    RewriteBase /
+
+    # Redirect non www request to www for SEO
+    RewriteCond %{HTTP_HOST} !^www\.
+    RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+    
+    # Redirect non existing
+    RewriteRule ^/$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule . / [L,QSA]
+</IfModule>
+
