@@ -1,6 +1,9 @@
 {
     "name": "Milk & Eggs",
     "short_name": "Milk & Eggs",
+    "start_url": "https://www.milkandeggs.app",
+    "description": "Just another grocery list app.",
+    "display": "minimal-ui",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -10,10 +13,10 @@
         {
             "src": "/android-chrome-512x512.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "maskable"
         }
     ],
     "theme_color": "#ffc3fd",
-    "background_color": "#ffc3fd",
-    "display": "standalone"
+    "background_color": "#ffc3fd"
 }

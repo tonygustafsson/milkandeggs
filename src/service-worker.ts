@@ -4,7 +4,6 @@ const ASSETS = `cache${timestamp}`;
 
 const to_cache = build.concat(files).filter((x) => x !== '/.htaccess');
 const cached = new Set(to_cache);
-console.log(cached);
 
 self.addEventListener('install', (event) => {
 	event.waitUntil(
