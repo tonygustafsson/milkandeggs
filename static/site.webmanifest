@@ -3,7 +3,7 @@
     "short_name": "Milk & Eggs",
     "start_url": "https://www.milkandeggs.app",
     "description": "Just another grocery list app.",
-    "display": "minimal-ui",
+    "display": "fullscreen",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
