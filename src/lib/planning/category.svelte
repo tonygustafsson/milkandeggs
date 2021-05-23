@@ -29,16 +29,18 @@
 <div class:invisible={!visible} bind:this={categoryElement}>
 	<h3>{$_(`categories.${category}`)}</h3>
 
-	{#if visible && categoryHasItems(category)}
-		<table>
-			{#each getMatchingCategoryItems(category) as item}
-				<PlanningItem {item} />
-			{/each}
-		</table>
-	{:else}
-		<p>
-			<em>{$_('planning.no_items_under_category')}</em>
-		</p>
+	{#if visible}
+		{#if categoryHasItems(category)}
+			<table>
+				{#each getMatchingCategoryItems(category) as item}
+					<PlanningItem {item} />
+				{/each}
+			</table>
+		{:else}
+			<p>
+				<em>{$_('planning.no_items_under_category')}</em>
+			</p>
+		{/if}
 	{/if}
 </div>
 
