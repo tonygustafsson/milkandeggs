@@ -38,6 +38,14 @@ The app uses:
 - Firebase real time databases
 - svelte-i18n
 
+## For the future
+
+- Ability to have multiple lists at the same time.
+- Add option to repopulate the list with items in the selected language. Some people might find the app boring when empty and just leave.
+- Performance fixes, planning mode takes 0,5 seconds to load.
+- OG tags for a nicer sharing experience.
+- Better icon and splash screen.
+
 ## Live site
 
 https://www.milkandeggs.app
