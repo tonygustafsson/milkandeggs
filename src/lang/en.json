@@ -40,6 +40,20 @@
 			"information": "You can share your list with a partner or a friend by sending them the following URL, or press the share button if available.",
 			"send_message": "Someone want's to share their shopping list with you on Milk & Eggs. Click the link to start sharing!",
 			"cta": "Share"
+		},
+		"download": {
+			"title": "Backup list",
+			"description": "You can download your list as a backup, or as a method to transfer the contents of this list to another. The list contains all items and their status.",
+			"cta": "Download"
+		},
+		"upload": {
+			"title": "Restore list",
+			"description": "You can completely replace the contents in your current list with the contents of a file you previously downloaded as a backup.",
+			"warning": "Your current lists content will be replaced!",
+			"cta": "Upload",
+			"warning_no_file_chosen": "No file chosen.",
+			"warning_no_content": "No content in the uploaded file.",
+			"done": "Done!"
 		}
 	},
 	"share": {

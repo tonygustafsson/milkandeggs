@@ -40,6 +40,20 @@
 			"information": "Du kan dela listan med en partner eller en vän genom att skicka dem nedanstående länk, eller klicka på knappen om den är tillgänglig.",
 			"send_message": "Någon vill dela sin shoppinglista med dig hos Milk & Eggs. Klicka på länken för att börja dela!",
 			"cta": "Dela"
+		},
+		"download": {
+			"title": "Säkerhetskopiera lista",
+			"description": "Du kan ladda ner listan som en backup, eller som metod för att överföra data mellan två olika listor. Listan innehåller alla varor och deras nuvarande status.",
+			"cta": "Ladda ner"
+		},
+		"upload": {
+			"title": "Återställ lista",
+			"description": "Du kan helt ersätta innehållet i nuvarande lista genom att ladda upp en fil du sedan tidigare laddat ner som en backup.",
+			"warning": "Din nuvarande listas innehåller kommer helt att raderas!",
+			"cta": "Ladda upp",
+			"warning_no_file_chosen": "Ingen fil vald.",
+			"warning_no_content": "Filen innehåller ingen data.",
+			"done": "Klart!"
 		}
 	},
 	"share": {

@@ -6,6 +6,7 @@
 	import { _, locale } from 'svelte-i18n';
 	import { base as basePath } from '$app/paths';
 	import { dev } from '$app/env';
+	import { items } from '../stores/items';
 
 	const generateGuid = () =>
 		Math.floor((1 + Math.random()) * 0x10000000000)
@@ -47,6 +48,46 @@
 		navigator.share({
 			text: `${$_('settings.share.send_message')} ${baseUrl}share/${$settings.listId}/`
 		});
+	};
+
+	const download = () => {
+		const data = JSON.stringify($items);
+		const blob = new Blob([data], { type: 'application/json' });
+		const link = document.createElement('a');
+		const url = URL.createObjectURL(blob);
+
+		link.setAttribute('href', url);
+		link.setAttribute('download', `milkandeggs-backup-${new Date().getTime()}.json`);
+		link.click();
+	};
+
+	const upload = (e) => {
+		e.preventDefault();
+
+		const form = e.target;
+		const file = form.file;
+
+		if (file.files.length < 1) {
+			return alert($_('settings.upload.warning_no_file_chosen'));
+		}
+
+		const reader = new FileReader();
+
+		reader.readAsText(file.files[0], 'utf-8');
+
+		reader.onload = (e) => {
+			const content = e.target.result.toString();
+
+			if (!content) {
+				return alert($_('settings.upload.warning_no_content'));
+			}
+
+			const json = JSON.parse(content);
+
+			items.set(json);
+
+			alert($_('settings.upload.done'));
+		};
 	};
 </script>
 
@@ -106,6 +147,31 @@
 				{$_('settings.share.cta')}
 			</Button>
 		{/if}
+
+		<h3>{$_('settings.download.title')}</h3>
+
+		<p>
+			{$_('settings.download.description')}
+		</p>
+
+		<Button on:click={download}>{$_('settings.download.cta')}</Button>
+
+		<h3>{$_('settings.upload.title')}</h3>
+
+		<p>
+			{$_('settings.upload.description')}
+			<strong>{$_('settings.upload.warning')}</strong>
+		</p>
+
+		<form on:submit={upload} enctype="multipart/form-data" method="post">
+			<input name="file" id="file" type="file" accept=".json" />
+
+			<div class="upload-button">
+				<Button type="submit">
+					{$_('settings.upload.cta')}
+				</Button>
+			</div>
+		</form>
 	{/if}
 </div>
 
@@ -113,6 +179,10 @@
 	.content {
 		width: 600px;
 		margin: 0 auto;
+	}
+
+	.upload-button {
+		padding-top: 12px;
 	}
 
 	@media (max-width: 600px) {
