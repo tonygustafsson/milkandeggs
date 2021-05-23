@@ -10,7 +10,7 @@
 </script>
 
 <svelte:head>
-	<title>{$_('settings.title')}</title>
+	<title>{$_('settings.title')} - Milk &amp; Eggs</title>
 	<base href={basePath} />
 </svelte:head>
 

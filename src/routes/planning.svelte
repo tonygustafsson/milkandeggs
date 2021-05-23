@@ -24,7 +24,7 @@
 </script>
 
 <svelte:head>
-	<title>{$_('planning.title')}</title>
+	<title>{$_('planning.title')} - Milk &amp; Eggs</title>
 	<base href={basePath} />
 </svelte:head>
 

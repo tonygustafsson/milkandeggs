@@ -44,7 +44,7 @@
 </script>
 
 <svelte:head>
-	<title>{$_('list.title')}</title>
+	<title>{$_('list.title')} - Milk &amp; Eggs</title>
 	<base href={basePath} />
 </svelte:head>
 
