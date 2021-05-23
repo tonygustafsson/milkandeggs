@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { categories } from '../../stores/categories';
+	import categories from '../../data/categories.json';
 	import { items } from '../../stores/items';
 	import Textfield from '$lib/textfield.svelte';
 	import Button from '$lib/button.svelte';
@@ -79,8 +79,8 @@
 		<Textfield type="text" id="name" name="name" />
 
 		<Dropdown name="category">
-			{#each $categories as category}
-				<option value={category.id}>{$_(`categories.${category.id}`)}</option>
+			{#each categories as category}
+				<option value={category}>{$_(`categories.${category}`)}</option>
 			{/each}
 		</Dropdown>
 

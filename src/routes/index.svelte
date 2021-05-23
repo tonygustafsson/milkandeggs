@@ -3,7 +3,7 @@
 	import { settings } from '../stores/settings';
 	import { goto } from '$app/navigation';
 	import { items, itemsArray } from '../stores/items';
-	import { categories } from '../stores/categories';
+	import categories from '../data/categories.json';
 	import Button from '$lib/button.svelte';
 	import IconDone from '$lib/icons/done.svelte';
 	import IconRemove from '$lib/icons/remove.svelte';
@@ -18,10 +18,10 @@
 	});
 
 	$: getMatchingCategoryItems = (categoryId: string) => {
-		return $itemsArray.filter((x) => x.categoryId == categoryId && x.active);
+		return $itemsArray.filter((x) => x.categoryId === categoryId && x.active);
 	};
 	$: categoryHasItems = (categoryId: string) =>
-		$itemsArray.find((x) => x.categoryId == categoryId && x.active);
+		$itemsArray.some((x) => x.categoryId == categoryId && x.active);
 
 	const allDone = () => {
 		$itemsArray.forEach((item) => (item.done = true));
@@ -61,12 +61,12 @@
 		</Button>
 	</div>
 
-	{#each Object.values($categories) as category}
-		{#if categoryHasItems(category.id)}
-			<h3>{$_(`categories.${category.id}`)}</h3>
+	{#each Object.values(categories) as category}
+		{#if categoryHasItems(category)}
+			<h3>{$_(`categories.${category}`)}</h3>
 
 			<table>
-				{#each getMatchingCategoryItems(category.id) as item}
+				{#each getMatchingCategoryItems(category) as item}
 					<ListItem {item} />
 				{/each}
 			</table>

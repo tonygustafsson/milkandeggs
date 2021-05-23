@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { settings } from '../stores/settings';
 	import { goto } from '$app/navigation';
-	import { categories } from '../stores/categories';
+	import categories from '../data/categories.json';
 	import { items, itemsArray } from '../stores/items';
 	import Button from '$lib/button.svelte';
 	import PlanningItem from '$lib/planning/planningItem.svelte';
@@ -18,8 +18,8 @@
 	});
 
 	$: getMatchingCategoryItems = (categoryId: string) =>
-		$itemsArray.filter((x) => x.categoryId == categoryId);
-	$: categoryHasItems = (categoryId: string) => $itemsArray.find((x) => x.categoryId == categoryId);
+		$itemsArray.filter((x) => x.categoryId === categoryId);
+	$: categoryHasItems = (categoryId: string) => $itemsArray.some((x) => x.categoryId == categoryId);
 
 	const clear = () => {
 		$itemsArray.forEach((x) => ((x.active = false), (x.quantity = 1), (x.comment = '')));
@@ -42,12 +42,12 @@
 		<AddItem />
 	</div>
 
-	{#each $categories as category}
-		<h3>{$_(`categories.${category.id}`)}</h3>
+	{#each categories as category}
+		<h3>{$_(`categories.${category}`)}</h3>
 
-		{#if categoryHasItems(category.id)}
+		{#if categoryHasItems(category)}
 			<table>
-				{#each getMatchingCategoryItems(category.id) as item}
+				{#each getMatchingCategoryItems(category) as item}
 					<PlanningItem {item} />
 				{/each}
 			</table>
