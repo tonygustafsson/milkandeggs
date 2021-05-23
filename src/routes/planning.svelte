@@ -5,21 +5,17 @@
 	import categories from '../data/categories.json';
 	import { items, itemsArray } from '../stores/items';
 	import Button from '$lib/button.svelte';
-	import PlanningItem from '$lib/planning/planningItem.svelte';
 	import AddItem from '$lib/planning/addItem.svelte';
 	import IconClear from '$lib/icons/clear.svelte';
 	import { _ } from 'svelte-i18n';
 	import { base as basePath } from '$app/paths';
+	import PlanningCategory from '$lib/planning/category.svelte';
 
 	onMount(() => {
 		if (!$settings.listId) {
 			goto('/settings');
 		}
 	});
-
-	$: getMatchingCategoryItems = (categoryId: string) =>
-		$itemsArray.filter((x) => x.categoryId === categoryId);
-	$: categoryHasItems = (categoryId: string) => $itemsArray.some((x) => x.categoryId == categoryId);
 
 	const clear = () => {
 		$itemsArray.forEach((x) => ((x.active = false), (x.quantity = 1), (x.comment = '')));
@@ -43,28 +39,11 @@
 	</div>
 
 	{#each categories as category}
-		<h3>{$_(`categories.${category}`)}</h3>
-
-		{#if categoryHasItems(category)}
-			<table>
-				{#each getMatchingCategoryItems(category) as item}
-					<PlanningItem {item} />
-				{/each}
-			</table>
-		{:else}
-			<p>
-				<em>{$_('planning.no_items_under_category')}</em>
-			</p>
-		{/if}
+		<PlanningCategory {category} items={$itemsArray} />
 	{/each}
 </div>
 
 <style>
-	table {
-		border-spacing: 0;
-		width: 100%;
-		margin: 0 auto;
-	}
 	.button-panel {
 		text-align: right;
 		width: 100%;
@@ -75,9 +54,6 @@
 		margin: 0 auto;
 	}
 	@media (max-width: 600px) {
-		table {
-			table-layout: fixed;
-		}
 		.content {
 			width: auto;
 		}
