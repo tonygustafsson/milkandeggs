@@ -8,7 +8,7 @@ For me, the main problem wasn't really adding things to a list, but rather remem
 
 The list doesn't try to know your needs. No items are added by default. It's your life, and your job to populate the list.
 
-This manager is meant to share with a partner or a friend. There is no limit on how many people can share a list. And it's really really fast as well. If you add an item to the list, your partner will see it within a second!
+This manager is meant to share with a partner or a friend. There is no limit on how many people can share a list. And it's really really fast as well. If you add an item to the list, your partner will see it within a second! No user account is needed. No personal details. Just a list ID.
 
 ## Screenshots
 
