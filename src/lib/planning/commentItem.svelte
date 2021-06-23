@@ -38,24 +38,25 @@
 	<IconComment active={!!item.comment} />
 </Button>
 
-<Dialog
-	open={commentDialogOpen}
-	onClose={() => (commentDialogOpen = false)}
-	title={`${$_('planning.comment')} ${item.name}`}
->
-	<form bind:this={formEl} on:submit={saveComment}>
-		<Textfield
-			disabled={!item.active}
-			name="comment"
-			id="comment-{item.id}"
-			value={item.comment || ''}
-			type="text"
-			placeholder={$_('planning.comment_placeholder')}
-		/>
+{#if commentDialogOpen}
+	<Dialog
+		onClose={() => (commentDialogOpen = false)}
+		title={`${$_('planning.comment')} ${item.name}`}
+	>
+		<form bind:this={formEl} on:submit={saveComment}>
+			<Textfield
+				disabled={!item.active}
+				name="comment"
+				id="comment-{item.id}"
+				value={item.comment || ''}
+				type="text"
+				placeholder={$_('planning.comment_placeholder')}
+			/>
 
-		<Button type="submit">
-			<IconSave />
-			{$_('common.save')}
-		</Button>
-	</form>
-</Dialog>
+			<Button type="submit">
+				<IconSave />
+				{$_('common.save')}
+			</Button>
+		</form>
+	</Dialog>
+{/if}

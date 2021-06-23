@@ -29,20 +29,21 @@
 	<IconRemove />
 </Button>
 
-<Dialog
-	open={removeDialogOpen}
-	onClose={() => (removeDialogOpen = false)}
-	title={`${$_('planning.do_you_want_to_remove')} ${item.name}?`}
->
-	<form on:submit={(e) => deleteItem(item.id, e)}>
-		<Button type="submit">
-			<IconDone />
-			{$_('common.yes')}
-		</Button>
+{#if removeDialogOpen}
+	<Dialog
+		onClose={() => (removeDialogOpen = false)}
+		title={`${$_('planning.do_you_want_to_remove')} ${item.name}?`}
+	>
+		<form on:submit={(e) => deleteItem(item.id, e)}>
+			<Button type="submit">
+				<IconDone />
+				{$_('common.yes')}
+			</Button>
 
-		<Button type="button" on:click={closeDialog}>
-			<IconRemove />
-			{$_('common.no')}
-		</Button>
-	</form>
-</Dialog>
+			<Button type="button" on:click={closeDialog}>
+				<IconRemove />
+				{$_('common.no')}
+			</Button>
+		</form>
+	</Dialog>
+{/if}

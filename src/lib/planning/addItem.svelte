@@ -70,23 +70,21 @@
 	{$_('planning.add_item')}
 </Button>
 
-<Dialog
-	open={addItemDialogOpen}
-	onClose={() => (addItemDialogOpen = false)}
-	title={$_('planning.add_item')}
->
-	<form bind:this={formEl} on:submit={addItem}>
-		<Textfield type="text" id="name" name="name" />
+{#if addItemDialogOpen}
+	<Dialog onClose={() => (addItemDialogOpen = false)} title={$_('planning.add_item')}>
+		<form bind:this={formEl} on:submit={addItem}>
+			<Textfield type="text" id="name" name="name" />
 
-		<Dropdown name="category">
-			{#each categories as category}
-				<option value={category}>{$_(`categories.${category}`)}</option>
-			{/each}
-		</Dropdown>
+			<Dropdown name="category">
+				{#each categories as category}
+					<option value={category}>{$_(`categories.${category}`)}</option>
+				{/each}
+			</Dropdown>
 
-		<Button type="submit">
-			<IconSave />
-			{$_('common.save')}
-		</Button>
-	</form>
-</Dialog>
+			<Button type="submit">
+				<IconSave />
+				{$_('common.save')}
+			</Button>
+		</form>
+	</Dialog>
+{/if}
