@@ -8,12 +8,15 @@
 	import IconPlus from '$lib/icons/plus.svelte';
 	import Dialog from '$lib/dialog.svelte';
 	import { _ } from 'svelte-i18n';
+	import Checkbox from '$lib/checkbox.svelte';
 
 	$: addItemDialogOpen = false;
+	$: addItemAsActive = true;
+
 	let formEl;
 
 	const createItemIdFromName = (name: string) => {
-		let id = name.replace(/ /g, '-');
+		let id = name.trim().replace(/ /g, '-');
 		id = id.replace(/å/g, 'a');
 		id = id.replace(/Å/g, 'a');
 		id = id.replace(/ä/g, 'a');
@@ -50,9 +53,9 @@
 
 		$items[newItemId] = {
 			id: newItemId,
-			name: form.name.value,
+			name: form.name.value.trim(),
 			categoryId: form.category.value,
-			active: false,
+			active: addItemAsActive,
 			done: false,
 			quantity: 1,
 			comment: ''
@@ -85,6 +88,23 @@
 				<IconSave />
 				{$_('common.save')}
 			</Button>
+
+			<div class="add-as-active">
+				<Checkbox
+					name="add-as-active"
+					id="add-as-active"
+					checked={addItemAsActive}
+					on:change={() => (addItemAsActive = !addItemAsActive)}
+				/>
+
+				<label for="add-as-active">{$_('planning.add_item_as_active')}</label>
+			</div>
 		</form>
 	</Dialog>
 {/if}
+
+<style>
+	.add-as-active {
+		padding-top: 12px;
+	}
+</style>

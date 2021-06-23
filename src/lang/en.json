@@ -16,6 +16,7 @@
 		"title": "Planning",
 		"clear": "Clear",
 		"add_item": "Add item",
+		"add_item_as_active": "Add as active",
 		"no_items_under_category": "There are no items under this category yet.",
 		"comment_placeholder": "Comment",
 		"comment": "Comment",

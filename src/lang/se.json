@@ -16,6 +16,7 @@
 		"title": "Planera",
 		"clear": "Töm",
 		"add_item": "Lägg till vara",
+		"add_item_as_active": "Lägg till som aktiv",
 		"no_items_under_category": "Inga varor under denna kategori ännu.",
 		"comment_placeholder": "Kommentar",
 		"comment": "Kommentera",
