@@ -51,7 +51,7 @@
 			on:change={toggleActivation}
 			name={item.name}
 			id={item.id}
-			checked={$items[item.id].active}
+			checked={$items[item.id] && $items[item.id].active}
 		/>
 
 		<label for={item.id}>
@@ -60,7 +60,7 @@
 	</td>
 
 	<td class="right">
-		<div class="action-bar" class:action-bar-disabled={!$items[item.id].active}>
+		<div class="action-bar" class:action-bar-disabled={!$items[item.id] || !$items[item.id].active}>
 			<Button
 				border={false}
 				size="small"
