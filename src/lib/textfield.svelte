@@ -10,6 +10,7 @@
 
 <style>
 	input {
+		width: 100%;
 		padding: 0.25em 0.5em;
 		background-color: #fff;
 		font-size: 1rem;
@@ -20,11 +21,5 @@
 	input[disabled] {
 		background-color: #eee;
 		cursor: not-allowed;
-	}
-
-	@media (max-width: 600px) {
-		input {
-			width: 100%;
-		}
 	}
 </style>

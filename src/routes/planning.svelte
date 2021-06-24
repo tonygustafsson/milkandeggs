@@ -3,7 +3,8 @@
 	import { settings } from '../stores/settings';
 	import { goto } from '$app/navigation';
 	import categories from '../data/categories.json';
-	import { items, itemsArray } from '../stores/items';
+	import Search from '$lib/planning/search.svelte';
+	import { items, itemsArray, itemsFilteredArray, searchValue } from '../stores/items';
 	import Button from '$lib/button.svelte';
 	import AddItem from '$lib/planning/addItem.svelte';
 	import IconClear from '$lib/icons/clear.svelte';
@@ -17,7 +18,7 @@
 		}
 	});
 
-	const clear = () => {
+	const clearItems = () => {
 		$itemsArray.forEach((x) => ((x.active = false), (x.quantity = 1), (x.comment = '')));
 		items.set($items);
 	};
@@ -30,7 +31,7 @@
 
 <div class="content">
 	<div class="button-panel">
-		<Button on:click={clear}>
+		<Button on:click={clearItems}>
 			<IconClear />
 			{$_('planning.clear')}
 		</Button>
@@ -38,8 +39,17 @@
 		<AddItem />
 	</div>
 
+	{#if $itemsArray.length > 20}
+		<Search />
+		<hr />
+	{/if}
+
+	{#if $searchValue !== ''}
+		<h3>Sökresultat</h3>
+	{/if}
+
 	{#each categories as category}
-		<PlanningCategory {category} items={$itemsArray} />
+		<PlanningCategory {category} items={$itemsFilteredArray} isSearchResult={$searchValue !== ''} />
 	{/each}
 </div>
 
@@ -47,7 +57,7 @@
 	.button-panel {
 		text-align: right;
 		width: 100%;
-		margin-bottom: 2em;
+		margin-bottom: 1em;
 	}
 	.content {
 		width: 600px;

@@ -11,6 +11,25 @@ let listId = null;
 // Create the empty store
 export const items: Writable<ItemList> = writable({});
 
+// Create a dirived store that is an array instead of an object, easier to loop through
+export const itemsArray: Readable<ItemListArray> = derived(
+	items,
+	($items) => ($items && Object.values($items)) || []
+);
+
+export const searchValue: Writable<string> = writable('');
+
+// Create a readable list of filtered items based on searchValue
+export const itemsFilteredArray: Readable<ItemListArray> = derived(
+	[itemsArray, searchValue],
+	([$itemsArray, $searchValue]) => {
+		const filteredItems = $itemsArray.filter((item) =>
+			item.name.toLowerCase().includes($searchValue)
+		);
+		return filteredItems;
+	}
+);
+
 Promise.all([import('firebase/app'), import('firebase/database'), import('firebase/auth')])
 	.then((x) => x[0].default)
 	.then((firebase) => {
@@ -59,9 +78,3 @@ Promise.all([import('firebase/app'), import('firebase/database'), import('fireba
 				console.log('Could not authorize against the database.', err);
 			});
 	});
-
-// Create a dirived store that is an array instead of an object, easier to loop through
-export const itemsArray: Readable<ItemListArray> = derived(
-	items,
-	($items) => ($items && Object.values($items)) || []
-);

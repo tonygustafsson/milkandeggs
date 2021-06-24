@@ -5,6 +5,7 @@
 	import type Item from '../../types/item';
 
 	export let category = '';
+	export let isSearchResult = false;
 	export let items: Item[] = [];
 
 	$: visible = false;
@@ -27,7 +28,9 @@
 </script>
 
 <div class:invisible={!visible} bind:this={categoryElement}>
-	<h3>{$_(`categories.${category}`)}</h3>
+	{#if !isSearchResult}
+		<h3>{$_(`categories.${category}`)}</h3>
+	{/if}
 
 	{#if visible}
 		{#if categoryHasItems(category)}
@@ -36,7 +39,7 @@
 					<PlanningItem {item} />
 				{/each}
 			</table>
-		{:else}
+		{:else if !isSearchResult}
 			<p>
 				<em>{$_('planning.no_items_under_category')}</em>
 			</p>
