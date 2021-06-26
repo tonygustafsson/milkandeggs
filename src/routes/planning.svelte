@@ -64,12 +64,13 @@
 		margin-bottom: 1em;
 	}
 	.content {
-		width: 600px;
+		width: 100%;
 		margin: 0 auto;
 	}
-	@media (max-width: 600px) {
+
+	@media (min-width: 600px) {
 		.content {
-			width: auto;
+			width: 600px;
 		}
 	}
 </style>

@@ -93,7 +93,7 @@
 		border-spacing: 0;
 	}
 	.content {
-		width: auto;
+		width: 100%;
 		margin: 0 auto;
 	}
 
