@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
 	import Button from '$lib/button.svelte';
 	import IconClose from '$lib/icons/close.svelte';
@@ -7,7 +8,8 @@
 	export let onClose: VoidFunction;
 
 	$: width = 0;
-	$: positionStyle = '';
+	$: dialogStyle = '';
+	$: backdropStyle = '';
 
 	let dialog;
 
@@ -16,7 +18,8 @@
 		const size = dialog.getBoundingClientRect();
 		width = size.width;
 
-		positionStyle = `top: ${top}px; left: calc(50vw - ${width / 2}px);`;
+		dialogStyle = `top: ${top}px; left: calc(50vw - ${width / 2}px); opacity: 1;`;
+		backdropStyle = 'opacity: 1';
 
 		// Prevent body scrolling when active
 		document.body.style.overflow = 'hidden';
@@ -28,7 +31,9 @@
 	});
 </script>
 
-<div class="root" bind:this={dialog} style={positionStyle}>
+<div class="backdrop" on:click={onClose} out:fade={{ duration: 200 }} style={backdropStyle} />
+
+<div class="root" bind:this={dialog} style={dialogStyle} out:fade={{ duration: 200 }}>
 	<div class="modal-title">
 		<h4>{title}</h4>
 	</div>
@@ -45,6 +50,17 @@
 </div>
 
 <style>
+	.backdrop {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		background-color: rgba(0, 0, 0, 0.5);
+		opacity: 0;
+		z-index: 9;
+		transition: opacity 200ms;
+	}
 	.root {
 		position: absolute;
 		display: block;
@@ -57,6 +73,8 @@
 		text-align: left;
 		padding: 0;
 		z-index: 10;
+		opacity: 0;
+		transition: opacity 200ms;
 	}
 
 	.modal-body {
