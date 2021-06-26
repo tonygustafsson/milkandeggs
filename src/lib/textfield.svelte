@@ -4,9 +4,32 @@
 	export let placeholder = '';
 	export let type = 'text';
 	export let name = '';
+	export let onKeyUp: (e: Event) => void;
+
+	let timer;
+
+	const debouncedOnKeyUp = (e) => {
+		if (!onKeyUp) {
+			return;
+		}
+
+		clearTimeout(timer);
+		timer = setTimeout(() => {
+			onKeyUp(e);
+		}, 500);
+	};
 </script>
 
-<input {id} {type} {name} {placeholder} {value} on:change {...$$restProps} />
+<input
+	{id}
+	{type}
+	{name}
+	{placeholder}
+	{value}
+	on:change
+	on:keyup={debouncedOnKeyUp}
+	{...$$restProps}
+/>
 
 <style>
 	input {

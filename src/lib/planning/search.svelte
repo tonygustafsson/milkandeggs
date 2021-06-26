@@ -23,7 +23,7 @@
 			name="search"
 			class="search-input"
 			value={$searchValue}
-			on:change={setSearchValue}
+			onKeyUp={setSearchValue}
 		/>
 	</div>
 	<Button type="submit">Search</Button>
