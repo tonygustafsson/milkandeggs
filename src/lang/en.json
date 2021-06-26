@@ -20,7 +20,12 @@
 		"no_items_under_category": "There are no items under this category yet.",
 		"comment_placeholder": "Comment",
 		"comment": "Comment",
-		"do_you_want_to_remove": "Do you want to remove"
+		"do_you_want_to_remove": "Do you want to remove",
+		"search_results": "Search results",
+		"search_cta": "Search",
+		"search_label": "Search",
+		"search_clear": "Clear",
+		"search_no_results": "No items found."
 	},
 	"settings": {
 		"title": "Settings",

@@ -20,7 +20,12 @@
 		"no_items_under_category": "Inga varor under denna kategori ännu.",
 		"comment_placeholder": "Kommentar",
 		"comment": "Kommentera",
-		"do_you_want_to_remove": "Vill du radera"
+		"do_you_want_to_remove": "Vill du radera",
+		"search_results": "Sökresultat",
+		"search_cta": "Sök",
+		"search_label": "Sök",
+		"search_clear": "Rensa",
+		"search_no_results": "Inga varor funna."
 	},
 	"settings": {
 		"title": "Inställningar",

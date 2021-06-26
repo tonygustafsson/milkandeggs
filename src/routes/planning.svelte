@@ -45,12 +45,16 @@
 	{/if}
 
 	{#if $searchValue !== ''}
-		<h3>Sökresultat</h3>
+		<h3>{$_('planning.search_results')}</h3>
 	{/if}
 
 	{#each categories as category}
 		<PlanningCategory {category} items={$itemsFilteredArray} isSearchResult={$searchValue !== ''} />
 	{/each}
+
+	{#if $searchValue !== '' && $itemsFilteredArray.length < 1}
+		<p>{$_('planning.search_no_results')}</p>
+	{/if}
 </div>
 
 <style>
