@@ -20,7 +20,7 @@ Sorry for my Swedish items :)
 ## Features
 
 - **List mode:** The one to use while in the store. Just check the items you picked up, and clear them when you are out of the store.
-- **Planning mode:** Add new items, check items that you want to remember to buy on your next store visit. You can change the quantity of each item rather than adding multiple types of items. You can also comment on the items, like "No green ones" to "bananas" for your partner to know :)
+- **Planning mode:** Add new items, check items that you want to remember to buy on your next store visit. You can change the quantity of each item rather than adding multiple types of items. You can also comment on the items, like "No green ones" to "bananas" for your partner to know. There are a search if you have more items than 20.
 - **Languages:**: You can change language between English and Swedish.
 - **Share list**: You can share the list with a partner or a friend by simply pressing a button. The co-shopper will get a link, and when pressed it will be connected.
 - **Backup/Restore**: You can also backup and restore your list. Also move the contents of one list to another.
