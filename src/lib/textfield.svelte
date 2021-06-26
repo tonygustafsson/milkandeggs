@@ -4,7 +4,7 @@
 	export let placeholder = '';
 	export let type = 'text';
 	export let name = '';
-	export let onKeyUp: (e: Event) => void;
+	export let onKeyUp: (e: Event) => void = null;
 
 	let timer;
 
