@@ -11,14 +11,14 @@
 	$: visible = false;
 	let categoryElement;
 
-	const observer = new IntersectionObserver((entries) => {
-		if (entries[0].intersectionRatio > 0) {
-			visible = true;
-			observer.unobserve(categoryElement);
-		}
-	});
-
 	onMount(() => {
+		const observer = new IntersectionObserver((entries) => {
+			if (entries[0].intersectionRatio > 0) {
+				visible = true;
+				observer.unobserve(categoryElement);
+			}
+		});
+
 		observer.observe(categoryElement);
 	});
 
