@@ -1,5 +1,5 @@
 import preprocess from 'svelte-preprocess';
-import node from '@sveltejs/adapter-node';
+import vercel from '@sveltejs/adapter-vercel';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -15,7 +15,7 @@ const config = {
 				external: ['@xstate/svelte']
 			}
 		},
-		adapter: node()
+		adapter: vercel()
 	}
 };
 
